@@ -415,7 +415,7 @@ declare namespace Android {
 
         function compareColor(point: Point, options?: CompareColorOptions): Promise<boolean>;
 
-        function compareColors(point: Point, options?: CompareColorOptions): Promise<boolean>;
+        function compareColors(point: Point[], options?: CompareColorOptions): Promise<boolean>;
 
         function findColor(color: number, options?: FindColorOptions): Promise<Point>;
 
