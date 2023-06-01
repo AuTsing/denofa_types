@@ -86,9 +86,15 @@ declare namespace Android {
         namespace accessibility {
             function click(point: Point): Promise<void>;
 
+            function click(x: number, y: number): Promise<void>;
+
             function press(point: Point, duration?: number): Promise<void>;
 
+            function press(x: number, y: number, duration?: number): Promise<void>;
+
             function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
+
+            function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
 
             function home(): void;
 
@@ -397,10 +403,16 @@ declare namespace Android {
 
         class CompareColorOptions {
             constructor(threshold?: number);
+
+            threshold: number;
         }
 
         class FindColorOptions {
             constructor(threshold?: number, rect?: Rect);
+
+            threshold: number;
+
+            rect: Rect;
         }
 
         function refresh(): Promise<Image>;
@@ -415,7 +427,11 @@ declare namespace Android {
 
         function compareColor(point: Point, options?: CompareColorOptions): Promise<boolean>;
 
+        function compareColor(x: number, y: number, c: number, options?: CompareColorOptions): Promise<boolean>;
+
         function compareColors(point: Point[], options?: CompareColorOptions): Promise<boolean>;
+
+        function compareColors(xycs: number[][], options?: CompareColorOptions): Promise<boolean>;
 
         function findColor(color: number, options?: FindColorOptions): Promise<Point>;
 
@@ -423,6 +439,14 @@ declare namespace Android {
 
         function findMultiColor(color: number, points: Point[], options?: FindColorOptions): Promise<Point>;
 
+        function findMultiColor(color: number, points: number[][], options?: FindColorOptions): Promise<Point>;
+
+        function findMultiColor(color: number, points: string, options?: FindColorOptions): Promise<Point>;
+
         function findMultiColors(color: number, points: Point[], options?: FindColorOptions): Promise<Point[]>;
+
+        function findMultiColors(color: number, points: number[][], options?: FindColorOptions): Promise<Point[]>;
+
+        function findMultiColors(color: number, points: string, options?: FindColorOptions): Promise<Point[]>;
     }
 }
