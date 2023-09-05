@@ -1,32 +1,300 @@
 // deno-lint-ignore-file no-explicit-any
 
 declare namespace Android {
-    /** 点类 */
-    class Point {
-        static from(point: Point): Point;
+    namespace app {
+        function toPackageName(appName: string): string;
 
-        constructor(x?: number, y?: number, c?: number);
+        function toAppName(packageName: string): string;
 
-        x: number;
+        function launchPackage(packageName: string): void;
 
-        y: number;
+        function launchApp(appName: string): void;
 
-        c: number;
+        function getCurrentPackage(): string;
+
+        function getCurrentApp(): string;
+
+        function getDenortVersion(): string;
+
+        function getDenortCoreVersion(): string;
     }
 
-    /** 矩形类 */
-    class Rect {
-        static from(rect: Rect): Rect;
+    namespace device {
+        function getWidth(): number;
 
-        constructor(left?: number, top?: number, right?: number, bottom?: number);
+        function getHeight(): number;
 
-        left: number;
+        function getDensity(): number;
 
-        top: number;
+        function getOrientation(): number;
 
-        right: number;
+        function getBrightness(): number;
 
-        bottom: number;
+        function setBrightness(value: number): void;
+
+        function getBrightnessMode(): number;
+
+        function setBrightnessMode(value: number): void;
+
+        function getMusicVolume(): number;
+
+        function setMusicVolume(value: number): void;
+
+        function getMusicMaxVolume(): number;
+
+        function getMusicMinVolume(): number;
+
+        function getNotificationVolume(): number;
+
+        function setNotificationVolume(value: number): void;
+
+        function getNotificationMaxVolume(): number;
+
+        function getNotificationMinVolume(): number;
+
+        function getAlarmVolume(): number;
+
+        function setAlarmVolume(value: number): void;
+
+        function getAlarmMaxVolume(): number;
+
+        function getAlarmMinVolume(): number;
+
+        function getBattery(): number;
+
+        function getIsCharging(): boolean;
+
+        function getTotalMem(): number;
+
+        function getAvailMem(): number;
+
+        function getIsLowMemory(): boolean;
+
+        function getIsScreenOn(): boolean;
+
+        function acquireScreenBright(maybeTimeout?: number): void;
+
+        function acquireScreenDim(maybeTimeout?: number): void;
+
+        function releaseScreen(): void;
+
+        function vibrate(timeout: number): void;
+
+        function cancelVibrate(): void;
+
+        function getBuildId(): string;
+
+        function getBuildDisplay(): string;
+
+        function getBuildProduct(): string;
+
+        function getBuildDevice(): string;
+
+        function getBuildBoard(): string;
+
+        function getBuildManufacturer(): string;
+
+        function getBuildBrand(): string;
+
+        function getBuildModel(): string;
+
+        function getBuildSocManufacturer(): string;
+
+        function getBuildSocModel(): string;
+
+        function getBuildBootloader(): string;
+
+        function getBuildRadio(): string;
+
+        function getBuildHardware(): string;
+
+        function getBuildSku(): string;
+
+        function getBuildOdmSku(): string;
+
+        function getBuildSerial(): string;
+
+        function getBuildSupportedAbis(): string[];
+
+        function getBuildSupported32BitAbis(): string[];
+
+        function getBuildSupported64BitAbis(): string[];
+
+        function getBuildType(): string;
+
+        function getBuildTags(): string;
+
+        function getBuildFingerprint(): string;
+
+        function getBuildTime(): string;
+
+        function getBuildUser(): string;
+
+        function getBuildHost(): string;
+
+        function getBuildSdkInt(): number;
+
+        function getBuildIncremental(): string;
+
+        function getBuildRelease(): string;
+
+        function getBuildBaseOs(): string;
+
+        function getBuildSecurityPatch(): string;
+
+        function getBuildCodename(): string;
+
+        function getImei(): string;
+
+        function getAndroidId(): string;
+
+        function getIpAddress(): string;
+
+        function getMacAddress(): string;
+
+        function getBluetoothAddress(): string;
+    }
+
+    namespace finger {
+        namespace accessibility {
+            function click(point: Point): Promise<void>;
+
+            function click(x: number, y: number): Promise<void>;
+
+            function press(point: Point, duration?: number): Promise<void>;
+
+            function press(x: number, y: number, duration?: number): Promise<void>;
+
+            function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
+
+            function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
+
+            function home(): void;
+
+            function back(): void;
+
+            function recents(): void;
+
+            function notifications(): void;
+
+            function lockScreen(): void;
+
+            function powerDialog(): void;
+
+            function quickSettings(): void;
+
+            function takeScreenshot(): void;
+
+            function toggleSplitScreen(): void;
+
+            function tap(point: Point): Promise<void>;
+
+            function tap(x: number, y: number): Promise<void>;
+
+            function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
+
+            function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
+
+            function dragAndDrop(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
+
+            function dragAndDrop(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
+        }
+
+        namespace root {
+            function tap(point: Point): Promise<void>;
+
+            function tap(x: number, y: number): Promise<void>;
+
+            function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
+
+            function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
+
+            function dragAndDrop(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
+
+            function dragAndDrop(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
+
+            function down(point: Point): Promise<void>;
+
+            function down(x: number, y: number): Promise<void>;
+
+            function move(point: Point): Promise<void>;
+
+            function move(x: number, y: number): Promise<void>;
+
+            function up(point: Point): Promise<void>;
+
+            function up(x: number, y: number): Promise<void>;
+
+            function multiDown(point: Point, id?: number): Promise<void>;
+
+            function multiDown(x: number, y: number, id?: number): Promise<void>;
+
+            function multiMove(point: Point, id?: number): Promise<void>;
+
+            function multiMove(x: number, y: number, id?: number): Promise<void>;
+
+            function multiUp(id?: number): Promise<void>;
+        }
+    }
+
+    namespace img {
+        class Image {
+            recycle(): void;
+
+            getWidth(): Promise<number>;
+
+            getHeight(): Promise<number>;
+
+            getColor(x: number, y: number): Promise<number>;
+        }
+
+        class CompareColorOptions {
+            constructor(threshold?: number);
+
+            threshold: number;
+        }
+
+        class FindColorOptions {
+            constructor(threshold?: number, rect?: Rect);
+
+            threshold: number;
+
+            rect: Rect;
+        }
+
+        function refresh(): Promise<Image>;
+
+        function refreshManually(): Promise<Image>;
+
+        function getImage(): Image;
+
+        function lock(): void;
+
+        function unlock(): void;
+
+        function compareColor(point: Point, options?: CompareColorOptions): Promise<boolean>;
+
+        function compareColor(x: number, y: number, c: number, options?: CompareColorOptions): Promise<boolean>;
+
+        function compareColors(point: Point[], options?: CompareColorOptions): Promise<boolean>;
+
+        function compareColors(xycs: number[][], options?: CompareColorOptions): Promise<boolean>;
+
+        function findColor(color: number, options?: FindColorOptions): Promise<Point>;
+
+        function findColors(color: number, options?: FindColorOptions): Promise<Point[]>;
+
+        function findMultiColor(color: number, points: Point[], options?: FindColorOptions): Promise<Point>;
+
+        function findMultiColor(color: number, points: number[][], options?: FindColorOptions): Promise<Point>;
+
+        function findMultiColor(color: number, points: string, options?: FindColorOptions): Promise<Point>;
+
+        function findMultiColors(color: number, points: Point[], options?: FindColorOptions): Promise<Point[]>;
+
+        function findMultiColors(color: number, points: number[][], options?: FindColorOptions): Promise<Point[]>;
+
+        function findMultiColors(color: number, points: string, options?: FindColorOptions): Promise<Point[]>;
     }
 
     /**
@@ -35,9 +303,6 @@ declare namespace Android {
      * @module
      */
     namespace io {
-        /** 在屏幕输出 Toast 信息。 */
-        function toast(...args: any[]): void;
-
         /**
          * 提供在应用的日志屏幕输出日志。
          *
@@ -80,40 +345,71 @@ declare namespace Android {
             /** 同 `assert` */
             function a(...args: any[]): void;
         }
+
+        /** 在屏幕输出 Toast 信息。 */
+        function toast(...args: any[]): void;
+
+        class Notification {
+            constructor(message: string, title?: string, smallIcon?: string, largeIcon?: string);
+
+            message: string;
+
+            title?: string;
+
+            smallIcon?: string;
+
+            largeIcon?: string;
+        }
+
+        function notification(message: string): void;
+
+        function notification(notification: Notification): void;
+
+        namespace root {
+            function inputText(text: string): Promise<void>;
+
+            function inputKeyEvent(key: string): Promise<void>;
+        }
     }
 
-    namespace finger {
-        namespace accessibility {
-            function click(point: Point): Promise<void>;
+    namespace project {
+        function run(projectName: string): void;
 
-            function click(x: number, y: number): Promise<void>;
+        function stop(maybeProjectName?: string): void;
+    }
 
-            function press(point: Point, duration?: number): Promise<void>;
+    namespace sys {
+        function delay(duration: number): Promise<void>;
 
-            function press(x: number, y: number, duration?: number): Promise<void>;
+        function sleep(duration: number): void;
+    }
 
-            function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
+    /** 点类 */
+    class Point {
+        static from(point: Point): Point;
 
-            function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
+        constructor(x?: number, y?: number, c?: number);
 
-            function home(): void;
+        x: number;
 
-            function back(): void;
+        y: number;
 
-            function recents(): void;
+        c: number;
+    }
 
-            function notifications(): void;
+    /** 矩形类 */
+    class Rect {
+        static from(rect: Rect): Rect;
 
-            function lockScreen(): void;
+        constructor(left?: number, top?: number, right?: number, bottom?: number);
 
-            function powerDialog(): void;
+        left: number;
 
-            function quickSettings(): void;
+        top: number;
 
-            function takeScreenshot(): void;
+        right: number;
 
-            function toggleSplitScreen(): void;
-        }
+        bottom: number;
     }
 
     /** Ui 对象类 */
@@ -390,63 +686,23 @@ declare namespace Android {
         wait(timeout?: number): Promise<void>;
     }
 
-    namespace img {
-        class Image {
-            recycle(): void;
+    class Floater {
+        static builder(): FloaterBuilder;
 
-            getWidth(): Promise<number>;
+        updateText(text: string, maybeColor?: number): Floater;
 
-            getHeight(): Promise<number>;
+        close(): Floater;
+    }
 
-            getColor(x: number, y: number): Promise<number>;
-        }
+    class FloaterBuilder {
+        position(x: number, y: number): FloaterBuilder;
 
-        class CompareColorOptions {
-            constructor(threshold?: number);
+        size(width: number, heigth: number): FloaterBuilder;
 
-            threshold: number;
-        }
+        background(color: number): FloaterBuilder;
 
-        class FindColorOptions {
-            constructor(threshold?: number, rect?: Rect);
+        text(text: string, maybeColor?: number): FloaterBuilder;
 
-            threshold: number;
-
-            rect: Rect;
-        }
-
-        function refresh(): Promise<Image>;
-
-        function refreshManually(): Promise<Image>;
-
-        function getImage(): Image;
-
-        function lock(): void;
-
-        function unlock(): void;
-
-        function compareColor(point: Point, options?: CompareColorOptions): Promise<boolean>;
-
-        function compareColor(x: number, y: number, c: number, options?: CompareColorOptions): Promise<boolean>;
-
-        function compareColors(point: Point[], options?: CompareColorOptions): Promise<boolean>;
-
-        function compareColors(xycs: number[][], options?: CompareColorOptions): Promise<boolean>;
-
-        function findColor(color: number, options?: FindColorOptions): Promise<Point>;
-
-        function findColors(color: number, options?: FindColorOptions): Promise<Point[]>;
-
-        function findMultiColor(color: number, points: Point[], options?: FindColorOptions): Promise<Point>;
-
-        function findMultiColor(color: number, points: number[][], options?: FindColorOptions): Promise<Point>;
-
-        function findMultiColor(color: number, points: string, options?: FindColorOptions): Promise<Point>;
-
-        function findMultiColors(color: number, points: Point[], options?: FindColorOptions): Promise<Point[]>;
-
-        function findMultiColors(color: number, points: number[][], options?: FindColorOptions): Promise<Point[]>;
-
-        function findMultiColors(color: number, points: string, options?: FindColorOptions): Promise<Point[]>;
+        build(): Promise<Floater>;
     }
 }
