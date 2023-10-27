@@ -157,18 +157,6 @@ declare namespace Android {
 
     namespace finger {
         namespace accessibility {
-            function click(point: Point): Promise<void>;
-
-            function click(x: number, y: number): Promise<void>;
-
-            function press(point: Point, duration?: number): Promise<void>;
-
-            function press(x: number, y: number, duration?: number): Promise<void>;
-
-            function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
-
-            function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
-
             function home(): void;
 
             function back(): void;
@@ -262,9 +250,7 @@ declare namespace Android {
             rect: Rect;
         }
 
-        function refresh(): Promise<Image>;
-
-        function refreshManually(): Promise<Image>;
+        function refresh(): Promise<void>;
 
         function getImage(): Image;
 
@@ -686,23 +672,35 @@ declare namespace Android {
         wait(timeout?: number): Promise<void>;
     }
 
+    class FloaterBuilder {
+        setPosition(x: number, y: number): FloaterBuilder;
+
+        setSize(width: number, heigth: number): FloaterBuilder;
+
+        setBackgroundColor(color: number): FloaterBuilder;
+
+        setText(text: string): FloaterBuilder;
+
+        setTextColor(color: number): FloaterBuilder;
+
+        build(): Promise<Floater>;
+    }
+
     class Floater {
         static builder(): FloaterBuilder;
 
-        updateText(text: string, maybeColor?: number): Floater;
+        static builder(id: string): FloaterBuilder;
+
+        updatePosition(x: number, y: number): Floater;
+
+        updateSize(width: number, heigth: number): Floater;
+
+        updateBackgroundColor(color: number): Floater;
+
+        updateText(text: string): Floater;
+
+        updateTextColor(color: number): Floater;
 
         close(): Floater;
-    }
-
-    class FloaterBuilder {
-        position(x: number, y: number): FloaterBuilder;
-
-        size(width: number, heigth: number): FloaterBuilder;
-
-        background(color: number): FloaterBuilder;
-
-        text(text: string, maybeColor?: number): FloaterBuilder;
-
-        build(): Promise<Floater>;
     }
 }
