@@ -683,13 +683,15 @@ declare namespace Android {
 
         setTextColor(color: number): FloaterBuilder;
 
-        build(): Promise<Floater>;
+        build(): Floater;
     }
 
     class Floater {
         static builder(): FloaterBuilder;
 
         static builder(id: string): FloaterBuilder;
+
+        show(): Promise<Floater>;
 
         updatePosition(x: number, y: number): Floater;
 
@@ -701,6 +703,150 @@ declare namespace Android {
 
         updateTextColor(color: number): Floater;
 
-        close(): Floater;
+        close(): Promise<Floater>;
+    }
+
+    type QuickUiResultCategory = 'Ok' | 'Cancel' | 'Last' | 'Empty';
+
+    type QuickUiResultValueCategory = string | boolean | string[];
+
+    class QuickUiResult {
+        readonly category: QuickUiResultCategory;
+
+        readonly result: Map<string, QuickUiResultValueCategory>;
+    }
+
+    class QuickUiSelectOptions {
+        static readonly DEFAULT_LABEL: string;
+
+        static readonly DEFAULT_OPTIONS: string[];
+
+        static readonly DEFAULT_DISPLAY_OPTIONS: string[];
+
+        static readonly DEFAULT_DEFAULT_VALUE: string;
+
+        readonly label: string;
+
+        readonly options: string[];
+
+        readonly displayOptions: string[];
+
+        readonly defaultValue: string;
+
+        constructor(label?: string, options?: string[], displayOptions?: string[], defaultValue?: string);
+    }
+
+    class QuickUiSwitchOptions {
+        static readonly DEFAULT_LABEL: string;
+
+        static readonly DEFAULT_DEFAULT_VALUE: string;
+
+        readonly label: string;
+
+        readonly defaultValue: string;
+
+        constructor(label?: string, defaultValue?: string);
+    }
+
+    class QuickUiCheckboxOptions {
+        static readonly DEFAULT_LABEL: string;
+
+        static readonly DEFAULT_OPTIONS: string[];
+
+        static readonly DEFAULT_DISPLAY_OPTIONS: string[];
+
+        static readonly DEFAULT_DEFAULT_VALUE: string[];
+
+        readonly label: string;
+
+        readonly options: string[];
+
+        readonly displayOptions: string[];
+
+        readonly defaultValue: string[];
+
+        constructor(label?: string, options?: string[], displayOptions?: string[], defaultValue?: string[]);
+    }
+
+    class QuickUiInputOptions {
+        static readonly DEFAULT_LABEL: string;
+
+        static readonly DEFAULT_DEFAULT_VALUE: string;
+
+        readonly label: string;
+
+        readonly defaultValue: string;
+
+        constructor(label?: string, defaultValue?: string);
+    }
+
+    class QuickUiTextOptions {
+        static readonly DEFAULT_VALUE: string;
+
+        static readonly DEFAULT_FONT_SIZE: number;
+
+        static readonly DEFAULT_COLOR: number;
+
+        readonly value: string;
+
+        readonly fontSize: number;
+
+        readonly color: number;
+
+        constructor(value?: string, fontSize?: number, color?: number);
+    }
+
+    class QuickUiBuilder {
+        setTitle(content: string): QuickUiBuilder;
+
+        setOkText(content: string): QuickUiBuilder;
+
+        setCancelText(content: string): QuickUiBuilder;
+
+        setCountDownTime(s: number): QuickUiBuilder;
+
+        addSelect(id: string): QuickUiBuilder;
+
+        addSelect(id: string, options: QuickUiSelectOptions): QuickUiBuilder;
+
+        addSelect(id: string, label: string, options: string[], displayOptions: string[], defaultValue: string): QuickUiBuilder;
+
+        addSwitch(id: string): QuickUiBuilder;
+
+        addSwitch(id: string, options: QuickUiSwitchOptions): QuickUiBuilder;
+
+        addSwitch(id: string, label: string, defaultValue: string): QuickUiBuilder;
+
+        addCheckbox(id: string): QuickUiBuilder;
+
+        addCheckbox(id: string, options: QuickUiCheckboxOptions): QuickUiBuilder;
+
+        addCheckbox(id: string, label: string, options: string[], displayOptions: string[], defaultValue: string[]): QuickUiBuilder;
+
+        addInput(id: string): QuickUiBuilder;
+
+        addInput(id: string, options: QuickUiInputOptions): QuickUiBuilder;
+
+        addInput(id: string, label: string, defaultValue: string): QuickUiBuilder;
+
+        addText(id: string): QuickUiBuilder;
+
+        addText(id: string, options: QuickUiTextOptions): QuickUiBuilder;
+
+        addText(id: string, value: string, fontSize: number, color: number): QuickUiBuilder;
+
+        build(): QuickUi;
+    }
+
+    class QuickUi {
+        static builder(): QuickUiBuilder;
+
+        static builder(id: string): QuickUiBuilder;
+
+        show(): Promise<QuickUi>;
+
+        getResult(): QuickUiResult;
+
+        waitForResult(): Promise<QuickUiResult>;
     }
 }
