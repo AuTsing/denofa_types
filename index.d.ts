@@ -691,6 +691,8 @@ declare namespace Android {
 
         static builder(id: string): FloaterBuilder;
 
+        id: string;
+
         show(): Promise<Floater>;
 
         updatePosition(x: number, y: number): Floater;
@@ -842,6 +844,8 @@ declare namespace Android {
         static builder(): QuickUiBuilder;
 
         static builder(id: string): QuickUiBuilder;
+
+        id: string;
 
         show(): Promise<QuickUi>;
 
