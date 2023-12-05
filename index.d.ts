@@ -718,14 +718,26 @@ declare namespace Android {
         readonly result: Map<string, QuickUiResultValueCategory>;
     }
 
+    interface QuickUiSelectOptionsConstructorOptions {
+        readonly label?: string;
+
+        readonly options?: string[];
+
+        readonly displayOptions?: string[];
+
+        readonly defaultValue?: string;
+    }
+
     class QuickUiSelectOptions {
-        static readonly DEFAULT_LABEL: string;
+        static readonly defaultOptions: {
+            readonly label: string;
 
-        static readonly DEFAULT_OPTIONS: string[];
+            readonly options: string[];
 
-        static readonly DEFAULT_DISPLAY_OPTIONS: string[];
+            readonly displayOptions: string[];
 
-        static readonly DEFAULT_DEFAULT_VALUE: string;
+            readonly defaultValue: string;
+        };
 
         readonly label: string;
 
@@ -735,29 +747,53 @@ declare namespace Android {
 
         readonly defaultValue: string;
 
+        constructor(options?: QuickUiSelectOptionsConstructorOptions);
+
         constructor(label?: string, options?: string[], displayOptions?: string[], defaultValue?: string);
     }
 
-    class QuickUiSwitchOptions {
-        static readonly DEFAULT_LABEL: string;
+    interface QuickUiSwitchOptionsConstructorOptions {
+        readonly label?: string;
 
-        static readonly DEFAULT_DEFAULT_VALUE: string;
+        readonly defaultValue?: string;
+    }
+
+    class QuickUiSwitchOptions {
+        static readonly defaultOptions: {
+            readonly label: string;
+
+            readonly defaultValue: string;
+        };
 
         readonly label: string;
 
         readonly defaultValue: string;
 
+        constructor(options?: QuickUiSwitchOptionsConstructorOptions);
+
         constructor(label?: string, defaultValue?: string);
     }
 
+    interface QuickUiCheckboxOptionsConstructorOptions {
+        readonly label?: string;
+
+        readonly options?: string[];
+
+        readonly displayOptions?: string[];
+
+        readonly defaultValue?: string[];
+    }
+
     class QuickUiCheckboxOptions {
-        static readonly DEFAULT_LABEL: string;
+        static readonly defaultOptions: {
+            readonly label: string;
 
-        static readonly DEFAULT_OPTIONS: string[];
+            readonly options: string[];
 
-        static readonly DEFAULT_DISPLAY_OPTIONS: string[];
+            readonly displayOptions: string[];
 
-        static readonly DEFAULT_DEFAULT_VALUE: string[];
+            readonly defaultValue: string[];
+        };
 
         readonly label: string;
 
@@ -767,27 +803,49 @@ declare namespace Android {
 
         readonly defaultValue: string[];
 
+        constructor(options?: QuickUiCheckboxOptionsConstructorOptions);
+
         constructor(label?: string, options?: string[], displayOptions?: string[], defaultValue?: string[]);
     }
 
-    class QuickUiInputOptions {
-        static readonly DEFAULT_LABEL: string;
+    interface QuickUiInputOptionsConstructorOptions {
+        readonly label?: string;
 
-        static readonly DEFAULT_DEFAULT_VALUE: string;
+        readonly defaultValue?: string;
+    }
+
+    class QuickUiInputOptions {
+        static readonly defaultOptions: {
+            readonly label: string;
+
+            readonly defaultValue: string;
+        };
 
         readonly label: string;
 
         readonly defaultValue: string;
 
+        constructor(options?: QuickUiInputOptionsConstructorOptions);
+
         constructor(label?: string, defaultValue?: string);
     }
 
+    interface QuickUiTextOptionsConstructorOptions {
+        readonly value?: string;
+
+        readonly fontSize?: number;
+
+        readonly color?: number;
+    }
+
     class QuickUiTextOptions {
-        static readonly DEFAULT_VALUE: string;
+        static readonly defaultOptions: {
+            readonly value: string;
 
-        static readonly DEFAULT_FONT_SIZE: number;
+            readonly fontSize: number;
 
-        static readonly DEFAULT_COLOR: number;
+            readonly color: number;
+        };
 
         readonly value: string;
 
@@ -795,10 +853,14 @@ declare namespace Android {
 
         readonly color: number;
 
+        constructor(options?: QuickUiTextOptionsConstructorOptions);
+
         constructor(value?: string, fontSize?: number, color?: number);
     }
 
     class QuickUiBuilder {
+        private constructor();
+
         setTitle(content: string): QuickUiBuilder;
 
         setOkText(content: string): QuickUiBuilder;
@@ -809,33 +871,43 @@ declare namespace Android {
 
         addSelect(id: string): QuickUiBuilder;
 
-        addSelect(id: string, options: QuickUiSelectOptions): QuickUiBuilder;
+        addSelect(id: string, options?: QuickUiSelectOptions): QuickUiBuilder;
 
-        addSelect(id: string, label: string, options: string[], displayOptions: string[], defaultValue: string): QuickUiBuilder;
+        addSelect(id: string, options?: QuickUiSelectOptionsConstructorOptions): QuickUiBuilder;
+
+        addSelect(id: string, label?: string, options?: string[], displayOptions?: string[], defaultValue?: string): QuickUiBuilder;
 
         addSwitch(id: string): QuickUiBuilder;
 
-        addSwitch(id: string, options: QuickUiSwitchOptions): QuickUiBuilder;
+        addSwitch(id: string, options?: QuickUiSwitchOptions): QuickUiBuilder;
 
-        addSwitch(id: string, label: string, defaultValue: string): QuickUiBuilder;
+        addSwitch(id: string, options?: QuickUiSwitchOptionsConstructorOptions): QuickUiBuilder;
+
+        addSwitch(id: string, label?: string, defaultValue?: string): QuickUiBuilder;
 
         addCheckbox(id: string): QuickUiBuilder;
 
-        addCheckbox(id: string, options: QuickUiCheckboxOptions): QuickUiBuilder;
+        addCheckbox(id: string, options?: QuickUiCheckboxOptions): QuickUiBuilder;
 
-        addCheckbox(id: string, label: string, options: string[], displayOptions: string[], defaultValue: string[]): QuickUiBuilder;
+        addCheckbox(id: string, options?: QuickUiCheckboxOptionsConstructorOptions): QuickUiBuilder;
+
+        addCheckbox(id: string, label?: string, options?: string[], displayOptions?: string[], defaultValue?: string[]): QuickUiBuilder;
 
         addInput(id: string): QuickUiBuilder;
 
-        addInput(id: string, options: QuickUiInputOptions): QuickUiBuilder;
+        addInput(id: string, options?: QuickUiInputOptions): QuickUiBuilder;
 
-        addInput(id: string, label: string, defaultValue: string): QuickUiBuilder;
+        addInput(id: string, options?: QuickUiInputOptionsConstructorOptions): QuickUiBuilder;
+
+        addInput(id: string, label?: string, defaultValue?: string): QuickUiBuilder;
 
         addText(id: string): QuickUiBuilder;
 
-        addText(id: string, options: QuickUiTextOptions): QuickUiBuilder;
+        addText(id: string, options?: QuickUiTextOptions): QuickUiBuilder;
 
-        addText(id: string, value: string, fontSize: number, color: number): QuickUiBuilder;
+        addText(id: string, options?: QuickUiTextOptionsConstructorOptions): QuickUiBuilder;
+
+        addText(id: string, value?: string, fontSize?: number, color?: number): QuickUiBuilder;
 
         build(): QuickUi;
     }
@@ -846,6 +918,8 @@ declare namespace Android {
         static builder(id: string): QuickUiBuilder;
 
         id: string;
+
+        private constructor();
 
         show(): Promise<QuickUi>;
 
