@@ -332,30 +332,46 @@ declare namespace Android {
             function a(...args: any[]): void;
         }
 
-        /** 在屏幕输出 Toast 信息。 */
-        function toast(...args: any[]): void;
-
-        class Notification {
-            constructor(message: string, title?: string, smallIcon?: string, largeIcon?: string);
-
-            message: string;
-
-            title?: string;
-
-            smallIcon?: string;
-
-            largeIcon?: string;
-        }
-
-        function notification(message: string): void;
-
-        function notification(notification: Notification): void;
-
         namespace root {
             function inputText(text: string): Promise<void>;
 
             function inputKeyEvent(key: string): Promise<void>;
         }
+
+        /** 在屏幕输出 Toast 信息。 */
+        function toast(...args: any[]): void;
+
+        interface NotificationConstructorOptions {
+            readonly message?: string;
+
+            readonly title?: string | null;
+
+            readonly smallIcon?: string | null;
+
+            readonly largeIcon?: string | null;
+        }
+
+        class Notification {
+            readonly message: string;
+
+            readonly title: string | null;
+
+            readonly smallIcon: string | null;
+
+            readonly largeIcon: string | null;
+
+            constructor(options?: NotificationConstructorOptions);
+
+            constructor(message: string | null, title: string | null, smallIcon: string | null, largeIcon: string | null);
+        }
+
+        function notification(notification: Notification): void;
+
+        function notification(message: string): void;
+
+        function notification(options: NotificationConstructorOptions): void;
+
+        function notification(message: string | null, title: string | null, smallIcon: string | null, largeIcon: string | null): void;
     }
 
     namespace project {
@@ -370,36 +386,74 @@ declare namespace Android {
         function sleep(duration: number): void;
     }
 
+    interface PointConstructorOptions {
+        x?: number;
+
+        y?: number;
+
+        c?: number;
+    }
+
     /** 点类 */
     class Point {
-        static from(point: Point): Point;
+        static readonly defaultOptions: {
+            readonly x: number;
 
-        constructor(x?: number, y?: number, c?: number);
+            readonly y: number;
 
-        x: number;
+            readonly c: number;
+        };
 
-        y: number;
+        readonly x: number;
 
-        c: number;
+        readonly y: number;
+
+        readonly c: number;
+
+        constructor(options?: PointConstructorOptions);
+
+        constructor(x: number | null, y: number | null, c: number | null);
+    }
+
+    interface RectConstructorOptions {
+        readonly left?: number;
+
+        readonly top?: number;
+
+        readonly right?: number;
+
+        readonly bottom?: number;
     }
 
     /** 矩形类 */
     class Rect {
-        static from(rect: Rect): Rect;
+        static readonly defaultOptions: {
+            readonly left: number;
 
-        constructor(left?: number, top?: number, right?: number, bottom?: number);
+            readonly top: number;
 
-        left: number;
+            readonly right: number;
 
-        top: number;
+            readonly bottom: number;
+        };
 
-        right: number;
+        readonly left: number;
 
-        bottom: number;
+        readonly top: number;
+
+        readonly right: number;
+
+        readonly bottom: number;
+
+        constructor(options?: RectConstructorOptions);
+
+        constructor(left: number | null, top: number | null, right: number | null, bottom: number | null);
     }
 
     /** Ui 对象类 */
     class UiObject {
+        private constructor();
+
         getParent(): UiObject | null;
 
         getChild(i: number): UiObject | null;
@@ -528,6 +582,8 @@ declare namespace Android {
     }
 
     class UiSelectorBuilder {
+        private constructor();
+
         id(id: string): UiSelectorBuilder;
 
         idEquals(id: string): UiSelectorBuilder;
@@ -659,6 +715,8 @@ declare namespace Android {
     class UiSelector {
         static builder(): UiSelectorBuilder;
 
+        private constructor();
+
         find(): UiObject[];
 
         findOne(): UiObject | null;
@@ -673,6 +731,8 @@ declare namespace Android {
     }
 
     class FloaterBuilder {
+        private constructor();
+
         setPosition(x: number, y: number): FloaterBuilder;
 
         setSize(width: number, heigth: number): FloaterBuilder;
@@ -692,6 +752,8 @@ declare namespace Android {
         static builder(id: string): FloaterBuilder;
 
         id: string;
+
+        private constructor();
 
         show(): Promise<Floater>;
 
@@ -749,7 +811,7 @@ declare namespace Android {
 
         constructor(options?: QuickUiSelectOptionsConstructorOptions);
 
-        constructor(label?: string, options?: string[], displayOptions?: string[], defaultValue?: string);
+        constructor(label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string | null);
     }
 
     interface QuickUiSwitchOptionsConstructorOptions {
@@ -771,7 +833,7 @@ declare namespace Android {
 
         constructor(options?: QuickUiSwitchOptionsConstructorOptions);
 
-        constructor(label?: string, defaultValue?: string);
+        constructor(label: string | null, defaultValue: string | null);
     }
 
     interface QuickUiCheckboxOptionsConstructorOptions {
@@ -805,7 +867,7 @@ declare namespace Android {
 
         constructor(options?: QuickUiCheckboxOptionsConstructorOptions);
 
-        constructor(label?: string, options?: string[], displayOptions?: string[], defaultValue?: string[]);
+        constructor(label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string[] | null);
     }
 
     interface QuickUiInputOptionsConstructorOptions {
@@ -827,7 +889,7 @@ declare namespace Android {
 
         constructor(options?: QuickUiInputOptionsConstructorOptions);
 
-        constructor(label?: string, defaultValue?: string);
+        constructor(label: string | null, defaultValue: string | null);
     }
 
     interface QuickUiTextOptionsConstructorOptions {
@@ -855,7 +917,7 @@ declare namespace Android {
 
         constructor(options?: QuickUiTextOptionsConstructorOptions);
 
-        constructor(value?: string, fontSize?: number, color?: number);
+        constructor(value: string | null, fontSize: number | null, color: number | null);
     }
 
     class QuickUiBuilder {
@@ -875,7 +937,7 @@ declare namespace Android {
 
         addSelect(id: string, options?: QuickUiSelectOptionsConstructorOptions): QuickUiBuilder;
 
-        addSelect(id: string, label?: string, options?: string[], displayOptions?: string[], defaultValue?: string): QuickUiBuilder;
+        addSelect(id: string, label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string | null): QuickUiBuilder;
 
         addSwitch(id: string): QuickUiBuilder;
 
@@ -883,7 +945,7 @@ declare namespace Android {
 
         addSwitch(id: string, options?: QuickUiSwitchOptionsConstructorOptions): QuickUiBuilder;
 
-        addSwitch(id: string, label?: string, defaultValue?: string): QuickUiBuilder;
+        addSwitch(id: string, label: string | null, defaultValue: string | null): QuickUiBuilder;
 
         addCheckbox(id: string): QuickUiBuilder;
 
@@ -891,7 +953,7 @@ declare namespace Android {
 
         addCheckbox(id: string, options?: QuickUiCheckboxOptionsConstructorOptions): QuickUiBuilder;
 
-        addCheckbox(id: string, label?: string, options?: string[], displayOptions?: string[], defaultValue?: string[]): QuickUiBuilder;
+        addCheckbox(id: string, label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string[] | null): QuickUiBuilder;
 
         addInput(id: string): QuickUiBuilder;
 
@@ -899,7 +961,7 @@ declare namespace Android {
 
         addInput(id: string, options?: QuickUiInputOptionsConstructorOptions): QuickUiBuilder;
 
-        addInput(id: string, label?: string, defaultValue?: string): QuickUiBuilder;
+        addInput(id: string, label: string | null, defaultValue: string | null): QuickUiBuilder;
 
         addText(id: string): QuickUiBuilder;
 
@@ -907,7 +969,7 @@ declare namespace Android {
 
         addText(id: string, options?: QuickUiTextOptionsConstructorOptions): QuickUiBuilder;
 
-        addText(id: string, value?: string, fontSize?: number, color?: number): QuickUiBuilder;
+        addText(id: string, value: string | null, fontSize: number | null, color: number | null): QuickUiBuilder;
 
         build(): QuickUi;
     }
