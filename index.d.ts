@@ -227,6 +227,8 @@ declare namespace Android {
 
     namespace img {
         class Image {
+            private constructor();
+
             recycle(): void;
 
             getWidth(): Promise<number>;
@@ -236,18 +238,38 @@ declare namespace Android {
             getColor(x: number, y: number): Promise<number>;
         }
 
-        class CompareColorOptions {
-            constructor(threshold?: number);
+        interface CompareColorOptionsConstructorOptions {
+            readonly threshold?: number;
+        }
 
-            threshold: number;
+        class CompareColorOptions {
+            static readonly defaultOptions: {
+                readonly threshold: number;
+            };
+
+            readonly threshold: number;
+
+            constructor(options?: CompareColorOptionsConstructorOptions);
+        }
+
+        interface FindColorOptionsConstructorOptions {
+            readonly threshold?: number;
+
+            readonly rect?: Rect;
         }
 
         class FindColorOptions {
-            constructor(threshold?: number, rect?: Rect);
+            static readonly defaultOptions: {
+                readonly threshold: number;
 
-            threshold: number;
+                readonly rect: Rect;
+            };
 
-            rect: Rect;
+            readonly threshold: number;
+
+            readonly rect: Rect;
+
+            constructor(options?: FindColorOptionsConstructorOptions);
         }
 
         function refresh(): Promise<void>;
@@ -260,27 +282,67 @@ declare namespace Android {
 
         function compareColor(point: Point, options?: CompareColorOptions): Promise<boolean>;
 
+        function compareColor(point: Point, options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
+
+        function compareColor(point: PointConstructorOptions, options?: CompareColorOptions): Promise<boolean>;
+
+        function compareColor(point: PointConstructorOptions, options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
+
         function compareColor(x: number, y: number, c: number, options?: CompareColorOptions): Promise<boolean>;
 
-        function compareColors(point: Point[], options?: CompareColorOptions): Promise<boolean>;
+        function compareColor(x: number, y: number, c: number, options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
 
-        function compareColors(xycs: number[][], options?: CompareColorOptions): Promise<boolean>;
+        function compareColors(points: Point[], options?: CompareColorOptions): Promise<boolean>;
+
+        function compareColors(points: Point[], options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
+
+        function compareColors(points: PointConstructorOptions[], options?: CompareColorOptions): Promise<boolean>;
+
+        function compareColors(points: PointConstructorOptions[], options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
+
+        function compareColors(xycs: [number, number, number][], options?: CompareColorOptions): Promise<boolean>;
+
+        function compareColors(xycs: [number, number, number][], options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
 
         function findColor(color: number, options?: FindColorOptions): Promise<Point>;
 
+        function findColor(color: number, options?: FindColorOptionsConstructorOptions): Promise<Point>;
+
         function findColors(color: number, options?: FindColorOptions): Promise<Point[]>;
+
+        function findColors(color: number, options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
 
         function findMultiColor(color: number, points: Point[], options?: FindColorOptions): Promise<Point>;
 
-        function findMultiColor(color: number, points: number[][], options?: FindColorOptions): Promise<Point>;
+        function findMultiColor(color: number, points: Point[], options?: FindColorOptionsConstructorOptions): Promise<Point>;
 
-        function findMultiColor(color: number, points: string, options?: FindColorOptions): Promise<Point>;
+        function findMultiColor(color: number, points: PointConstructorOptions[], options?: FindColorOptions): Promise<Point>;
+
+        function findMultiColor(color: number, points: PointConstructorOptions[], options?: FindColorOptionsConstructorOptions): Promise<Point>;
+
+        function findMultiColor(color: number, xycs: [number, number, number][], options?: FindColorOptions): Promise<Point>;
+
+        function findMultiColor(color: number, xycs: [number, number, number][], options?: FindColorOptionsConstructorOptions): Promise<Point>;
+
+        function findMultiColor(color: number, pointsInfo: string, options?: FindColorOptions): Promise<Point>;
+
+        function findMultiColor(color: number, pointsInfo: string, options?: FindColorOptionsConstructorOptions): Promise<Point>;
 
         function findMultiColors(color: number, points: Point[], options?: FindColorOptions): Promise<Point[]>;
 
-        function findMultiColors(color: number, points: number[][], options?: FindColorOptions): Promise<Point[]>;
+        function findMultiColors(color: number, points: Point[], options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
 
-        function findMultiColors(color: number, points: string, options?: FindColorOptions): Promise<Point[]>;
+        function findMultiColors(color: number, points: PointConstructorOptions[], options?: FindColorOptions): Promise<Point[]>;
+
+        function findMultiColors(color: number, points: PointConstructorOptions[], options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
+
+        function findMultiColors(color: number, xycs: [number, number, number][], options?: FindColorOptions): Promise<Point[]>;
+
+        function findMultiColors(color: number, xycs: [number, number, number][], options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
+
+        function findMultiColors(color: number, pointsInfo: string, options?: FindColorOptions): Promise<Point[]>;
+
+        function findMultiColors(color: number, pointsInfo: string, options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
     }
 
     /**
