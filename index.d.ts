@@ -177,13 +177,19 @@ declare namespace Android {
 
             function tap(point: Point): Promise<void>;
 
+            function tap(point: PointConstructorOptions): Promise<void>;
+
             function tap(x: number, y: number): Promise<void>;
 
             function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
 
+            function swipe(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
+
             function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
 
             function dragAndDrop(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
+
+            function dragAndDrop(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
 
             function dragAndDrop(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
         }
@@ -191,33 +197,49 @@ declare namespace Android {
         namespace root {
             function tap(point: Point): Promise<void>;
 
+            function tap(point: PointConstructorOptions): Promise<void>;
+
             function tap(x: number, y: number): Promise<void>;
 
             function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
+
+            function swipe(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
 
             function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
 
             function dragAndDrop(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
 
+            function dragAndDrop(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
+
             function dragAndDrop(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
 
             function down(point: Point): Promise<void>;
+
+            function down(point: PointConstructorOptions): Promise<void>;
 
             function down(x: number, y: number): Promise<void>;
 
             function move(point: Point): Promise<void>;
 
+            function move(point: PointConstructorOptions): Promise<void>;
+
             function move(x: number, y: number): Promise<void>;
 
             function up(point: Point): Promise<void>;
+
+            function up(point: PointConstructorOptions): Promise<void>;
 
             function up(x: number, y: number): Promise<void>;
 
             function multiDown(point: Point, id?: number): Promise<void>;
 
+            function multiDown(point: PointConstructorOptions, id?: number): Promise<void>;
+
             function multiDown(x: number, y: number, id?: number): Promise<void>;
 
             function multiMove(point: Point, id?: number): Promise<void>;
+
+            function multiMove(point: PointConstructorOptions, id?: number): Promise<void>;
 
             function multiMove(x: number, y: number, id?: number): Promise<void>;
 
