@@ -14,6 +14,10 @@ declare namespace Android {
 
         function getCurrentApp(): string;
 
+        function getRunningPackages(): string[];
+
+        function getRunningApps(): string[];
+
         function getDenortVersion(): string;
 
         function getDenortCoreVersion(): string;
@@ -462,6 +466,33 @@ declare namespace Android {
         function run(projectName: string): void;
 
         function stop(maybeProjectName?: string): void;
+    }
+
+    namespace shell {
+        interface ShellerResult {
+            readonly code: number;
+            readonly out: string[];
+            readonly err: string[];
+            readonly isSuccess: boolean;
+        }
+
+        enum ShellerCategory {
+            Sh = 0,
+            Su = 1,
+            LibSu = 2,
+        }
+
+        class Sheller {
+            static readonly defaultOptions: {
+                readonly category: ShellerCategory;
+            };
+
+            readonly category: ShellerCategory;
+
+            constructor(category?: ShellerCategory);
+
+            exec(cmd: string): Promise<ShellerResult>;
+        }
     }
 
     namespace sys {

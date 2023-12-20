@@ -1,1 +1,1 @@
-Denort core version: `v0.9.0`
+Denort core version: `v0.10.0`
