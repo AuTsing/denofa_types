@@ -10,6 +10,16 @@ declare namespace Android {
 
         function launchApp(appName: string): void;
 
+        function stopPackage(packageName: string): void;
+
+        function stopApp(appName: string): void;
+
+        function installPackage(path: string): void;
+
+        function uninstallPackage(packageName: string): void;
+
+        function uninstallApp(appName: string): void;
+
         function getCurrentPackage(): string;
 
         function getCurrentApp(): string;
