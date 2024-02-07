@@ -291,7 +291,7 @@ declare namespace Android {
         interface FindColorOptionsConstructorOptions {
             readonly threshold?: number;
 
-            readonly rect?: Rect;
+            readonly rect?: Rect | RectData;
         }
 
         class FindColorOptions {
@@ -316,69 +316,65 @@ declare namespace Android {
 
         function unlock(): void;
 
-        function compareColor(point: Point, options?: CompareColorOptions): Promise<boolean>;
+        function compareColor(xyc: PointData): Promise<boolean>;
+        function compareColor(point: Point): Promise<boolean>;
+        function compareColor(point: PointConstructorOptions): Promise<boolean>;
+        function compareColor(xyc: PointData, options: CompareColorOptions): Promise<boolean>;
+        function compareColor(point: Point, options: CompareColorOptions): Promise<boolean>;
+        function compareColor(point: PointConstructorOptions, options: CompareColorOptions): Promise<boolean>;
+        function compareColor(xyc: PointData, options: CompareColorOptionsConstructorOptions): Promise<boolean>;
+        function compareColor(point: Point, options: CompareColorOptionsConstructorOptions): Promise<boolean>;
+        function compareColor(point: PointConstructorOptions, options: CompareColorOptionsConstructorOptions): Promise<boolean>;
 
-        function compareColor(point: Point, options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
+        function compareColors(xycs: PointData[]): Promise<boolean>;
+        function compareColors(points: Point[]): Promise<boolean>;
+        function compareColors(points: PointConstructorOptions[]): Promise<boolean>;
+        function compareColors(xycs: PointData[], options: CompareColorOptions): Promise<boolean>;
+        function compareColors(points: Point[], options: CompareColorOptions): Promise<boolean>;
+        function compareColors(points: PointConstructorOptions[], options: CompareColorOptions): Promise<boolean>;
+        function compareColors(xycs: PointData[], options: CompareColorOptionsConstructorOptions): Promise<boolean>;
+        function compareColors(points: Point[], options: CompareColorOptionsConstructorOptions): Promise<boolean>;
+        function compareColors(points: PointConstructorOptions[], options: CompareColorOptionsConstructorOptions): Promise<boolean>;
 
-        function compareColor(point: PointConstructorOptions, options?: CompareColorOptions): Promise<boolean>;
+        function findColor(xyc: PointData): Promise<Point>;
+        function findColor(point: Point): Promise<Point>;
+        function findColor(point: PointConstructorOptions): Promise<Point>;
+        function findColor(xyc: PointData, options: FindColorOptions): Promise<Point>;
+        function findColor(point: Point, options: FindColorOptions): Promise<Point>;
+        function findColor(point: PointConstructorOptions, options: FindColorOptions): Promise<Point>;
+        function findColor(xyc: PointData, options: FindColorOptionsConstructorOptions): Promise<Point>;
+        function findColor(point: Point, options: FindColorOptionsConstructorOptions): Promise<Point>;
+        function findColor(point: PointConstructorOptions, options: FindColorOptionsConstructorOptions): Promise<Point>;
 
-        function compareColor(point: PointConstructorOptions, options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
+        function findColors(xyc: PointData): Promise<Point[]>;
+        function findColors(point: Point): Promise<Point[]>;
+        function findColors(point: PointConstructorOptions): Promise<Point[]>;
+        function findColors(xyc: PointData, options: FindColorOptions): Promise<Point[]>;
+        function findColors(point: Point, options: FindColorOptions): Promise<Point[]>;
+        function findColors(point: PointConstructorOptions, options: FindColorOptions): Promise<Point[]>;
+        function findColors(xyc: PointData, options: FindColorOptionsConstructorOptions): Promise<Point[]>;
+        function findColors(point: Point, options: FindColorOptionsConstructorOptions): Promise<Point[]>;
+        function findColors(point: PointConstructorOptions, options: FindColorOptionsConstructorOptions): Promise<Point[]>;
 
-        function compareColor(x: number, y: number, c: number, options?: CompareColorOptions): Promise<boolean>;
+        function findMultiColor(xycs: PointData[]): Promise<Point>;
+        function findMultiColor(points: Point[]): Promise<Point>;
+        function findMultiColor(points: PointConstructorOptions[]): Promise<Point>;
+        function findMultiColor(xycs: PointData[], options: FindColorOptions): Promise<Point>;
+        function findMultiColor(points: Point[], options: FindColorOptions): Promise<Point>;
+        function findMultiColor(points: PointConstructorOptions[], options: FindColorOptions): Promise<Point>;
+        function findMultiColor(xycs: PointData[], options: FindColorOptionsConstructorOptions): Promise<Point>;
+        function findMultiColor(points: Point[], options: FindColorOptionsConstructorOptions): Promise<Point>;
+        function findMultiColor(points: PointConstructorOptions[], options: FindColorOptionsConstructorOptions): Promise<Point>;
 
-        function compareColor(x: number, y: number, c: number, options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
-
-        function compareColors(points: Point[], options?: CompareColorOptions): Promise<boolean>;
-
-        function compareColors(points: Point[], options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
-
-        function compareColors(points: PointConstructorOptions[], options?: CompareColorOptions): Promise<boolean>;
-
-        function compareColors(points: PointConstructorOptions[], options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
-
-        function compareColors(xycs: [number, number, number][], options?: CompareColorOptions): Promise<boolean>;
-
-        function compareColors(xycs: [number, number, number][], options?: CompareColorOptionsConstructorOptions): Promise<boolean>;
-
-        function findColor(color: number, options?: FindColorOptions): Promise<Point>;
-
-        function findColor(color: number, options?: FindColorOptionsConstructorOptions): Promise<Point>;
-
-        function findColors(color: number, options?: FindColorOptions): Promise<Point[]>;
-
-        function findColors(color: number, options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
-
-        function findMultiColor(color: number, points: Point[], options?: FindColorOptions): Promise<Point>;
-
-        function findMultiColor(color: number, points: Point[], options?: FindColorOptionsConstructorOptions): Promise<Point>;
-
-        function findMultiColor(color: number, points: PointConstructorOptions[], options?: FindColorOptions): Promise<Point>;
-
-        function findMultiColor(color: number, points: PointConstructorOptions[], options?: FindColorOptionsConstructorOptions): Promise<Point>;
-
-        function findMultiColor(color: number, xycs: [number, number, number][], options?: FindColorOptions): Promise<Point>;
-
-        function findMultiColor(color: number, xycs: [number, number, number][], options?: FindColorOptionsConstructorOptions): Promise<Point>;
-
-        function findMultiColor(color: number, pointsInfo: string, options?: FindColorOptions): Promise<Point>;
-
-        function findMultiColor(color: number, pointsInfo: string, options?: FindColorOptionsConstructorOptions): Promise<Point>;
-
-        function findMultiColors(color: number, points: Point[], options?: FindColorOptions): Promise<Point[]>;
-
-        function findMultiColors(color: number, points: Point[], options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
-
-        function findMultiColors(color: number, points: PointConstructorOptions[], options?: FindColorOptions): Promise<Point[]>;
-
-        function findMultiColors(color: number, points: PointConstructorOptions[], options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
-
-        function findMultiColors(color: number, xycs: [number, number, number][], options?: FindColorOptions): Promise<Point[]>;
-
-        function findMultiColors(color: number, xycs: [number, number, number][], options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
-
-        function findMultiColors(color: number, pointsInfo: string, options?: FindColorOptions): Promise<Point[]>;
-
-        function findMultiColors(color: number, pointsInfo: string, options?: FindColorOptionsConstructorOptions): Promise<Point[]>;
+        function findMultiColors(xycs: PointData[]): Promise<Point[]>;
+        function findMultiColors(points: Point[]): Promise<Point[]>;
+        function findMultiColors(points: PointConstructorOptions[]): Promise<Point[]>;
+        function findMultiColors(xycs: PointData[], options: FindColorOptions): Promise<Point[]>;
+        function findMultiColors(points: Point[], options: FindColorOptions): Promise<Point[]>;
+        function findMultiColors(points: PointConstructorOptions[], options: FindColorOptions): Promise<Point[]>;
+        function findMultiColors(xycs: PointData[], options: FindColorOptionsConstructorOptions): Promise<Point[]>;
+        function findMultiColors(points: Point[], options: FindColorOptionsConstructorOptions): Promise<Point[]>;
+        function findMultiColors(points: PointConstructorOptions[], options: FindColorOptionsConstructorOptions): Promise<Point[]>;
     }
 
     /**
@@ -519,6 +515,8 @@ declare namespace Android {
         c?: number;
     }
 
+    type PointData = [number, number, number];
+
     /** 点类 */
     class Point {
         static readonly defaultOptions: {
@@ -529,14 +527,17 @@ declare namespace Android {
             readonly c: number;
         };
 
+        static isPointData(value: any): boolean;
+
         readonly x: number;
 
         readonly y: number;
 
         readonly c: number;
 
-        constructor(options?: PointConstructorOptions);
-
+        constructor();
+        constructor(xyc: PointData);
+        constructor(options: PointConstructorOptions);
         constructor(x: number | null, y: number | null, c: number | null);
     }
 
@@ -550,6 +551,8 @@ declare namespace Android {
         readonly bottom?: number;
     }
 
+    type RectData = [number, number, number, number];
+
     /** 矩形类 */
     class Rect {
         static readonly defaultOptions: {
@@ -562,6 +565,8 @@ declare namespace Android {
             readonly bottom: number;
         };
 
+        static isRectData(value: any): boolean;
+
         readonly left: number;
 
         readonly top: number;
@@ -570,8 +575,9 @@ declare namespace Android {
 
         readonly bottom: number;
 
-        constructor(options?: RectConstructorOptions);
-
+        constructor();
+        constructor(ltrb: RectData);
+        constructor(options: RectConstructorOptions);
         constructor(left: number | null, top: number | null, right: number | null, bottom: number | null);
     }
 
