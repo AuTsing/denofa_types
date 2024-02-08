@@ -291,19 +291,19 @@ declare namespace Android {
         interface FindColorOptionsConstructorOptions {
             readonly threshold?: number;
 
-            readonly rect?: Rect | RectData;
+            readonly region?: Rect | RectData;
         }
 
         class FindColorOptions {
             static readonly defaultOptions: {
                 readonly threshold: number;
 
-                readonly rect: Rect;
+                readonly region: Rect;
             };
 
             readonly threshold: number;
 
-            readonly rect: Rect;
+            readonly region: Rect;
 
             constructor(options?: FindColorOptionsConstructorOptions);
         }
