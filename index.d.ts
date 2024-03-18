@@ -1,6 +1,73 @@
 // deno-lint-ignore-file no-explicit-any
 
 declare namespace Android {
+    /**
+     * 提供对安卓设备的输入输出操作。
+     *
+     * @module
+     */
+    namespace io {
+        /**
+         * 提供在应用的日志屏幕输出日志。
+         *
+         * @module
+         */
+        namespace log {
+            /** 输出级别为 `VERBOSE` 的日志。 */
+            function verbose(...args: any[]): void;
+
+            /** 输出级别为 `DEBUG` 的日志。 */
+            function debug(...args: any[]): void;
+
+            /** 输出级别为 `INFO` 的日志。 */
+            function info(...args: any[]): void;
+
+            /** 输出级别为 `WARN` 的日志。 */
+            function warn(...args: any[]): void;
+
+            /** 输出级别为 `ERROR` 的日志。 */
+            function error(...args: any[]): void;
+
+            /** 输出级别为 `ASSERT` 的日志。 */
+            function assert(...args: any[]): void;
+
+            /** 同 `verbose` */
+            function v(...args: any[]): void;
+
+            /** 同 `debug` */
+            function d(...args: any[]): void;
+
+            /** 同 `info` */
+            function i(...args: any[]): void;
+
+            /** 同 `warn` */
+            function w(...args: any[]): void;
+
+            /** 同 `error` */
+            function e(...args: any[]): void;
+
+            /** 同 `assert` */
+            function a(...args: any[]): void;
+        }
+
+        namespace root {
+            function inputText(text: string): Promise<void>;
+
+            function inputKeyEvent(key: string): Promise<void>;
+        }
+
+        /** 在屏幕输出 Toast 信息。 */
+        function toast(...args: any[]): void;
+
+        function notification(notification: Notification): void;
+
+        function notification(message: string): void;
+
+        function notification(options: NotificationConstructorOptions): void;
+
+        function notification(message: string | null, title: string | null, smallIcon: string | null, largeIcon: string | null): void;
+    }
+
     namespace app {
         function toPackageName(appName: string): string;
 
@@ -169,145 +236,19 @@ declare namespace Android {
         function getBluetoothAddress(): string;
     }
 
-    namespace finger {
-        namespace accessibility {
-            function home(): void;
+    namespace sys {
+        function delay(duration: number): Promise<void>;
 
-            function back(): void;
+        function sleep(duration: number): void;
+    }
 
-            function recents(): void;
+    namespace project {
+        function run(projectName: string): void;
 
-            function notifications(): void;
-
-            function lockScreen(): void;
-
-            function powerDialog(): void;
-
-            function quickSettings(): void;
-
-            function takeScreenshot(): void;
-
-            function toggleSplitScreen(): void;
-
-            function tap(point: Point): Promise<void>;
-
-            function tap(point: PointConstructorOptions): Promise<void>;
-
-            function tap(x: number, y: number): Promise<void>;
-
-            function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
-
-            function swipe(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
-
-            function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
-
-            function dragAndDrop(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
-
-            function dragAndDrop(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
-
-            function dragAndDrop(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
-        }
-
-        namespace root {
-            function tap(point: Point): Promise<void>;
-
-            function tap(point: PointConstructorOptions): Promise<void>;
-
-            function tap(x: number, y: number): Promise<void>;
-
-            function swipe(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
-
-            function swipe(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
-
-            function swipe(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
-
-            function dragAndDrop(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
-
-            function dragAndDrop(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
-
-            function dragAndDrop(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
-
-            function down(point: Point): Promise<void>;
-
-            function down(point: PointConstructorOptions): Promise<void>;
-
-            function down(x: number, y: number): Promise<void>;
-
-            function move(point: Point): Promise<void>;
-
-            function move(point: PointConstructorOptions): Promise<void>;
-
-            function move(x: number, y: number): Promise<void>;
-
-            function up(point: Point): Promise<void>;
-
-            function up(point: PointConstructorOptions): Promise<void>;
-
-            function up(x: number, y: number): Promise<void>;
-
-            function multiDown(point: Point, id?: number): Promise<void>;
-
-            function multiDown(point: PointConstructorOptions, id?: number): Promise<void>;
-
-            function multiDown(x: number, y: number, id?: number): Promise<void>;
-
-            function multiMove(point: Point, id?: number): Promise<void>;
-
-            function multiMove(point: PointConstructorOptions, id?: number): Promise<void>;
-
-            function multiMove(x: number, y: number, id?: number): Promise<void>;
-
-            function multiUp(id?: number): Promise<void>;
-        }
+        function stop(maybeProjectName?: string): void;
     }
 
     namespace img {
-        class Image {
-            private constructor();
-
-            recycle(): void;
-
-            getWidth(): Promise<number>;
-
-            getHeight(): Promise<number>;
-
-            getColor(x: number, y: number): Promise<number>;
-        }
-
-        interface CompareColorOptionsConstructorOptions {
-            readonly threshold?: number;
-        }
-
-        class CompareColorOptions {
-            static readonly defaultOptions: {
-                readonly threshold: number;
-            };
-
-            readonly threshold: number;
-
-            constructor(options?: CompareColorOptionsConstructorOptions);
-        }
-
-        interface FindColorOptionsConstructorOptions {
-            readonly threshold?: number;
-
-            readonly region?: Rect | RectData;
-        }
-
-        class FindColorOptions {
-            static readonly defaultOptions: {
-                readonly threshold: number;
-
-                readonly region: Rect;
-            };
-
-            readonly threshold: number;
-
-            readonly region: Rect;
-
-            constructor(options?: FindColorOptionsConstructorOptions);
-        }
-
         function refresh(): Promise<void>;
 
         function getImage(): Image;
@@ -377,134 +318,92 @@ declare namespace Android {
         function findMultiColors(points: PointConstructorOptions[], options: FindColorOptionsConstructorOptions): Promise<Point[]>;
     }
 
-    /**
-     * 提供对安卓设备的输入输出操作。
-     *
-     * @module
-     */
-    namespace io {
-        /**
-         * 提供在应用的日志屏幕输出日志。
-         *
-         * @module
-         */
-        namespace log {
-            /** 输出级别为 `VERBOSE` 的日志。 */
-            function verbose(...args: any[]): void;
+    namespace finger {
+        function homeAccessibility(): void;
 
-            /** 输出级别为 `DEBUG` 的日志。 */
-            function debug(...args: any[]): void;
+        function backAccessibility(): void;
 
-            /** 输出级别为 `INFO` 的日志。 */
-            function info(...args: any[]): void;
+        function recentsAccessibility(): void;
 
-            /** 输出级别为 `WARN` 的日志。 */
-            function warn(...args: any[]): void;
+        function notificationsAccessibility(): void;
 
-            /** 输出级别为 `ERROR` 的日志。 */
-            function error(...args: any[]): void;
+        function lockScreenAccessibility(): void;
 
-            /** 输出级别为 `ASSERT` 的日志。 */
-            function assert(...args: any[]): void;
+        function powerDialogAccessibility(): void;
 
-            /** 同 `verbose` */
-            function v(...args: any[]): void;
+        function quickSettingsAccessibility(): void;
 
-            /** 同 `debug` */
-            function d(...args: any[]): void;
+        function takeScreenshotAccessibility(): void;
 
-            /** 同 `info` */
-            function i(...args: any[]): void;
+        function toggleSplitScreenAccessibility(): void;
 
-            /** 同 `warn` */
-            function w(...args: any[]): void;
+        function tapAccessibility(point: Point): Promise<void>;
 
-            /** 同 `error` */
-            function e(...args: any[]): void;
+        function tapAccessibility(point: PointConstructorOptions): Promise<void>;
 
-            /** 同 `assert` */
-            function a(...args: any[]): void;
-        }
+        function tapAccessibility(x: number, y: number): Promise<void>;
 
-        namespace root {
-            function inputText(text: string): Promise<void>;
+        function swipeAccessibility(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
 
-            function inputKeyEvent(key: string): Promise<void>;
-        }
+        function swipeAccessibility(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
 
-        /** 在屏幕输出 Toast 信息。 */
-        function toast(...args: any[]): void;
+        function swipeAccessibility(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
 
-        interface NotificationConstructorOptions {
-            readonly message?: string;
+        function dragAndDropAccessibility(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
 
-            readonly title?: string | null;
+        function dragAndDropAccessibility(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
 
-            readonly smallIcon?: string | null;
+        function dragAndDropAccessibility(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
 
-            readonly largeIcon?: string | null;
-        }
+        function tapRoot(point: Point): Promise<void>;
 
-        class Notification {
-            readonly message: string;
+        function tapRoot(point: PointConstructorOptions): Promise<void>;
 
-            readonly title: string | null;
+        function tapRoot(x: number, y: number): Promise<void>;
 
-            readonly smallIcon: string | null;
+        function swipeRoot(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
 
-            readonly largeIcon: string | null;
+        function swipeRoot(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
 
-            constructor(options?: NotificationConstructorOptions);
+        function swipeRoot(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
 
-            constructor(message: string | null, title: string | null, smallIcon: string | null, largeIcon: string | null);
-        }
+        function dragAndDropRoot(pointFrom: Point, pointTo: Point, duration?: number): Promise<void>;
 
-        function notification(notification: Notification): void;
+        function dragAndDropRoot(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration?: number): Promise<void>;
 
-        function notification(message: string): void;
+        function dragAndDropRoot(xFrom: number, yFrom: number, xTo: number, yTo: number, duration?: number): Promise<void>;
 
-        function notification(options: NotificationConstructorOptions): void;
+        function downRoot(point: Point): Promise<void>;
 
-        function notification(message: string | null, title: string | null, smallIcon: string | null, largeIcon: string | null): void;
-    }
+        function downRoot(point: PointConstructorOptions): Promise<void>;
 
-    namespace project {
-        function run(projectName: string): void;
+        function downRoot(x: number, y: number): Promise<void>;
 
-        function stop(maybeProjectName?: string): void;
-    }
+        function moveRoot(point: Point): Promise<void>;
 
-    namespace shell {
-        interface ShellerResult {
-            readonly code: number;
-            readonly out: string[];
-            readonly err: string[];
-            readonly isSuccess: boolean;
-        }
+        function moveRoot(point: PointConstructorOptions): Promise<void>;
 
-        enum ShellerCategory {
-            Sh = 0,
-            Su = 1,
-            LibSu = 2,
-        }
+        function moveRoot(x: number, y: number): Promise<void>;
 
-        class Sheller {
-            static readonly defaultOptions: {
-                readonly category: ShellerCategory;
-            };
+        function upRoot(point: Point): Promise<void>;
 
-            readonly category: ShellerCategory;
+        function upRoot(point: PointConstructorOptions): Promise<void>;
 
-            constructor(category?: ShellerCategory);
+        function upRoot(x: number, y: number): Promise<void>;
 
-            exec(cmd: string): Promise<ShellerResult>;
-        }
-    }
+        function multiDownRoot(point: Point, id?: number): Promise<void>;
 
-    namespace sys {
-        function delay(duration: number): Promise<void>;
+        function multiDownRoot(point: PointConstructorOptions, id?: number): Promise<void>;
 
-        function sleep(duration: number): void;
+        function multiDownRoot(x: number, y: number, id?: number): Promise<void>;
+
+        function multiMoveRoot(point: Point, id?: number): Promise<void>;
+
+        function multiMoveRoot(point: PointConstructorOptions, id?: number): Promise<void>;
+
+        function multiMoveRoot(x: number, y: number, id?: number): Promise<void>;
+
+        function multiUpRoot(id?: number): Promise<void>;
     }
 
     interface PointConstructorOptions {
@@ -581,300 +480,53 @@ declare namespace Android {
         constructor(left: number | null, top: number | null, right: number | null, bottom: number | null);
     }
 
-    /** Ui 对象类 */
-    class UiObject {
-        private constructor();
+    interface NotificationConstructorOptions {
+        readonly message?: string;
 
-        getParent(): UiObject | null;
+        readonly title?: string | null;
 
-        getChild(i: number): UiObject | null;
+        readonly smallIcon?: string | null;
 
-        getId(): string;
-
-        getDesc(): string;
-
-        getClassName(): string;
-
-        getPackageName(): string;
-
-        getText(): string;
-
-        getOriginId(): number;
-
-        getDepth(): number;
-
-        getIndexInParent(): number;
-
-        getDrawingOrder(): number;
-
-        getRow(): number;
-
-        getRowSpan(): number;
-
-        getRowCount(): number;
-
-        getColumn(): number;
-
-        getColumnSpan(): number;
-
-        getColumnCount(): number;
-
-        getAccessibilityFocused(): boolean;
-
-        getChecked(): boolean;
-
-        getCheckable(): boolean;
-
-        getClickable(): boolean;
-
-        getContextClickable(): boolean;
-
-        getDismissable(): boolean;
-
-        getEnabled(): boolean;
-
-        getEditable(): boolean;
-
-        getFocusable(): boolean;
-
-        getFocused(): boolean;
-
-        getLongClickable(): boolean;
-
-        getSelected(): boolean;
-
-        getScrollable(): boolean;
-
-        getVisibleToUser(): boolean;
-
-        getPassword(): boolean;
-
-        getContentInvalid(): boolean;
-
-        getMultiLine(): boolean;
-
-        getBoundsInScreen(): Rect;
-
-        getChildCount(): number;
-
-        getChildren(): UiObject[];
-
-        getAllChildren(): UiObject[];
-
-        click(): void;
-
-        longClick(): void;
-
-        accessibilityFocus(): void;
-
-        clearAccessibilityFocus(): void;
-
-        focus(): void;
-
-        clearFocus(): void;
-
-        copy(): void;
-
-        paste(): void;
-
-        select(): void;
-
-        cut(): void;
-
-        collapse(): void;
-
-        expand(): void;
-
-        dismiss(): void;
-
-        showOnScreen(): void;
-
-        scrollForward(): void;
-
-        scrollBackward(): void;
-
-        scrollUp(): void;
-
-        scrollDown(): void;
-
-        scrollLeft(): void;
-
-        scrollRight(): void;
-
-        contextClick(): void;
-
-        setSelection(start: number, end: number): void;
-
-        setText(text: string): void;
-
-        setProgress(value: number): void;
-
-        scrollTo(row: number, column: number): void;
+        readonly largeIcon?: string | null;
     }
 
-    class UiSelectorBuilder {
-        private constructor();
+    class Notification {
+        readonly message: string;
 
-        id(id: string): UiSelectorBuilder;
+        readonly title: string | null;
 
-        idEquals(id: string): UiSelectorBuilder;
+        readonly smallIcon: string | null;
 
-        idContains(content: string): UiSelectorBuilder;
+        readonly largeIcon: string | null;
 
-        idMatches(regex: string): UiSelectorBuilder;
+        constructor(options?: NotificationConstructorOptions);
 
-        idStartsWith(prefix: string): UiSelectorBuilder;
-
-        idEndsWith(suffix: string): UiSelectorBuilder;
-
-        text(text: string): UiSelectorBuilder;
-
-        textEquals(text: string): UiSelectorBuilder;
-
-        textContains(content: string): UiSelectorBuilder;
-
-        textMatches(regex: string): UiSelectorBuilder;
-
-        textStartsWith(prefix: string): UiSelectorBuilder;
-
-        textEndsWith(suffix: string): UiSelectorBuilder;
-
-        desc(desc: string): UiSelectorBuilder;
-
-        descEquals(desc: string): UiSelectorBuilder;
-
-        descContains(content: string): UiSelectorBuilder;
-
-        descMatches(regex: string): UiSelectorBuilder;
-
-        descStartsWith(prefix: string): UiSelectorBuilder;
-
-        descEndsWith(suffix: string): UiSelectorBuilder;
-
-        className(className: string): UiSelectorBuilder;
-
-        classNameEquals(className: string): UiSelectorBuilder;
-
-        classNameContains(content: string): UiSelectorBuilder;
-
-        classNameMatches(regex: string): UiSelectorBuilder;
-
-        classNameStartsWith(prefix: string): UiSelectorBuilder;
-
-        classNameEndsWith(suffix: string): UiSelectorBuilder;
-
-        packageName(packageName: string): UiSelectorBuilder;
-
-        packageNameEquals(packageName: string): UiSelectorBuilder;
-
-        packageNameContains(content: string): UiSelectorBuilder;
-
-        packageNameMatches(regex: string): UiSelectorBuilder;
-
-        packageNameStartsWith(prefix: string): UiSelectorBuilder;
-
-        packageNameEndsWith(suffix: string): UiSelectorBuilder;
-
-        bounds(rect: Rect): UiSelectorBuilder;
-
-        boundsEquals(rect: Rect): UiSelectorBuilder;
-
-        boundsInside(rect: Rect): UiSelectorBuilder;
-
-        boundsContains(rect: Rect): UiSelectorBuilder;
-
-        checkable(value?: boolean): UiSelectorBuilder;
-
-        checked(value?: boolean): UiSelectorBuilder;
-
-        focusable(value?: boolean): UiSelectorBuilder;
-
-        focused(value?: boolean): UiSelectorBuilder;
-
-        visibleToUser(value?: boolean): UiSelectorBuilder;
-
-        accessibilityFocused(value?: boolean): UiSelectorBuilder;
-
-        selected(value?: boolean): UiSelectorBuilder;
-
-        clickable(value?: boolean): UiSelectorBuilder;
-
-        longClickable(value?: boolean): UiSelectorBuilder;
-
-        enabled(value?: boolean): UiSelectorBuilder;
-
-        password(value?: boolean): UiSelectorBuilder;
-
-        scrollable(value?: boolean): UiSelectorBuilder;
-
-        editable(value?: boolean): UiSelectorBuilder;
-
-        contentInvalid(value?: boolean): UiSelectorBuilder;
-
-        contextClickable(value?: boolean): UiSelectorBuilder;
-
-        multiLine(value?: boolean): UiSelectorBuilder;
-
-        dismissable(value?: boolean): UiSelectorBuilder;
-
-        depth(value: number): UiSelectorBuilder;
-
-        row(value: number): UiSelectorBuilder;
-
-        rowCount(value: number): UiSelectorBuilder;
-
-        rowSpan(value: number): UiSelectorBuilder;
-
-        column(value: number): UiSelectorBuilder;
-
-        columnCount(value: number): UiSelectorBuilder;
-
-        columnSpan(value: number): UiSelectorBuilder;
-
-        indexInParent(value: number): UiSelectorBuilder;
-
-        drawingOrder(value: number): UiSelectorBuilder;
-
-        bfs(): UiSelectorBuilder;
-
-        dfs(): UiSelectorBuilder;
-
-        build(): UiSelector;
+        constructor(message: string | null, title: string | null, smallIcon: string | null, largeIcon: string | null);
     }
 
-    /** Ui 选择器类 */
-    class UiSelector {
-        static builder(): UiSelectorBuilder;
-
-        private constructor();
-
-        find(): UiObject[];
-
-        findOne(): UiObject | null;
-
-        untilFind(timeout?: number): Promise<UiObject[]>;
-
-        untilFindOne(timeout?: number): Promise<UiObject>;
-
-        exists(): boolean;
-
-        wait(timeout?: number): Promise<void>;
+    interface ShellerResult {
+        readonly code: number;
+        readonly out: string[];
+        readonly err: string[];
+        readonly isSuccess: boolean;
     }
 
-    class FloaterBuilder {
-        private constructor();
+    enum ShellerCategory {
+        Sh = 0,
+        Su = 1,
+        LibSu = 2,
+    }
 
-        setPosition(x: number, y: number): FloaterBuilder;
+    class Sheller {
+        static readonly defaultOptions: {
+            readonly category: ShellerCategory;
+        };
 
-        setSize(width: number, heigth: number): FloaterBuilder;
+        readonly category: ShellerCategory;
 
-        setBackgroundColor(color: number): FloaterBuilder;
+        constructor(category?: ShellerCategory);
 
-        setText(text: string): FloaterBuilder;
-
-        setTextColor(color: number): FloaterBuilder;
-
-        build(): Floater;
+        exec(cmd: string): Promise<ShellerResult>;
     }
 
     class Floater {
@@ -899,6 +551,92 @@ declare namespace Android {
         updateTextColor(color: number): Floater;
 
         close(): Promise<Floater>;
+    }
+
+    class FloaterBuilder {
+        private constructor();
+
+        setPosition(x: number, y: number): FloaterBuilder;
+
+        setSize(width: number, heigth: number): FloaterBuilder;
+
+        setBackgroundColor(color: number): FloaterBuilder;
+
+        setText(text: string): FloaterBuilder;
+
+        setTextColor(color: number): FloaterBuilder;
+
+        build(): Floater;
+    }
+
+    class QuickUi {
+        static builder(): QuickUiBuilder;
+
+        static builder(id: string): QuickUiBuilder;
+
+        id: string;
+
+        private constructor();
+
+        show(): Promise<QuickUi>;
+
+        getResult(): QuickUiResult;
+
+        waitForResult(): Promise<QuickUiResult>;
+    }
+
+    class QuickUiBuilder {
+        private constructor();
+
+        setTitle(content: string): QuickUiBuilder;
+
+        setOkText(content: string): QuickUiBuilder;
+
+        setCancelText(content: string): QuickUiBuilder;
+
+        setCountDownTime(s: number): QuickUiBuilder;
+
+        addSelect(id: string): QuickUiBuilder;
+
+        addSelect(id: string, options?: QuickUiSelectOptions): QuickUiBuilder;
+
+        addSelect(id: string, options?: QuickUiSelectOptionsConstructorOptions): QuickUiBuilder;
+
+        addSelect(id: string, label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string | null): QuickUiBuilder;
+
+        addSwitch(id: string): QuickUiBuilder;
+
+        addSwitch(id: string, options?: QuickUiSwitchOptions): QuickUiBuilder;
+
+        addSwitch(id: string, options?: QuickUiSwitchOptionsConstructorOptions): QuickUiBuilder;
+
+        addSwitch(id: string, label: string | null, defaultValue: string | null): QuickUiBuilder;
+
+        addCheckbox(id: string): QuickUiBuilder;
+
+        addCheckbox(id: string, options?: QuickUiCheckboxOptions): QuickUiBuilder;
+
+        addCheckbox(id: string, options?: QuickUiCheckboxOptionsConstructorOptions): QuickUiBuilder;
+
+        addCheckbox(id: string, label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string[] | null): QuickUiBuilder;
+
+        addInput(id: string): QuickUiBuilder;
+
+        addInput(id: string, options?: QuickUiInputOptions): QuickUiBuilder;
+
+        addInput(id: string, options?: QuickUiInputOptionsConstructorOptions): QuickUiBuilder;
+
+        addInput(id: string, label: string | null, defaultValue: string | null): QuickUiBuilder;
+
+        addText(id: string): QuickUiBuilder;
+
+        addText(id: string, options?: QuickUiTextOptions): QuickUiBuilder;
+
+        addText(id: string, options?: QuickUiTextOptionsConstructorOptions): QuickUiBuilder;
+
+        addText(id: string, value: string | null, fontSize: number | null, color: number | null): QuickUiBuilder;
+
+        build(): QuickUi;
     }
 
     type QuickUiResultCategory = 'Ok' | 'Cancel' | 'Last' | 'Empty';
@@ -1051,73 +789,329 @@ declare namespace Android {
         constructor(value: string | null, fontSize: number | null, color: number | null);
     }
 
-    class QuickUiBuilder {
+    /** Ui 对象类 */
+    class UiObject {
         private constructor();
 
-        setTitle(content: string): QuickUiBuilder;
+        getParent(): UiObject | null;
 
-        setOkText(content: string): QuickUiBuilder;
+        getChild(i: number): UiObject | null;
 
-        setCancelText(content: string): QuickUiBuilder;
+        getId(): string;
 
-        setCountDownTime(s: number): QuickUiBuilder;
+        getDesc(): string;
 
-        addSelect(id: string): QuickUiBuilder;
+        getClassName(): string;
 
-        addSelect(id: string, options?: QuickUiSelectOptions): QuickUiBuilder;
+        getPackageName(): string;
 
-        addSelect(id: string, options?: QuickUiSelectOptionsConstructorOptions): QuickUiBuilder;
+        getText(): string;
 
-        addSelect(id: string, label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string | null): QuickUiBuilder;
+        getOriginId(): number;
 
-        addSwitch(id: string): QuickUiBuilder;
+        getDepth(): number;
 
-        addSwitch(id: string, options?: QuickUiSwitchOptions): QuickUiBuilder;
+        getIndexInParent(): number;
 
-        addSwitch(id: string, options?: QuickUiSwitchOptionsConstructorOptions): QuickUiBuilder;
+        getDrawingOrder(): number;
 
-        addSwitch(id: string, label: string | null, defaultValue: string | null): QuickUiBuilder;
+        getRow(): number;
 
-        addCheckbox(id: string): QuickUiBuilder;
+        getRowSpan(): number;
 
-        addCheckbox(id: string, options?: QuickUiCheckboxOptions): QuickUiBuilder;
+        getRowCount(): number;
 
-        addCheckbox(id: string, options?: QuickUiCheckboxOptionsConstructorOptions): QuickUiBuilder;
+        getColumn(): number;
 
-        addCheckbox(id: string, label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string[] | null): QuickUiBuilder;
+        getColumnSpan(): number;
 
-        addInput(id: string): QuickUiBuilder;
+        getColumnCount(): number;
 
-        addInput(id: string, options?: QuickUiInputOptions): QuickUiBuilder;
+        getAccessibilityFocused(): boolean;
 
-        addInput(id: string, options?: QuickUiInputOptionsConstructorOptions): QuickUiBuilder;
+        getChecked(): boolean;
 
-        addInput(id: string, label: string | null, defaultValue: string | null): QuickUiBuilder;
+        getCheckable(): boolean;
 
-        addText(id: string): QuickUiBuilder;
+        getClickable(): boolean;
 
-        addText(id: string, options?: QuickUiTextOptions): QuickUiBuilder;
+        getContextClickable(): boolean;
 
-        addText(id: string, options?: QuickUiTextOptionsConstructorOptions): QuickUiBuilder;
+        getDismissable(): boolean;
 
-        addText(id: string, value: string | null, fontSize: number | null, color: number | null): QuickUiBuilder;
+        getEnabled(): boolean;
 
-        build(): QuickUi;
+        getEditable(): boolean;
+
+        getFocusable(): boolean;
+
+        getFocused(): boolean;
+
+        getLongClickable(): boolean;
+
+        getSelected(): boolean;
+
+        getScrollable(): boolean;
+
+        getVisibleToUser(): boolean;
+
+        getPassword(): boolean;
+
+        getContentInvalid(): boolean;
+
+        getMultiLine(): boolean;
+
+        getBoundsInScreen(): Rect;
+
+        getChildCount(): number;
+
+        getChildren(): UiObject[];
+
+        getAllChildren(): UiObject[];
+
+        click(): void;
+
+        longClick(): void;
+
+        accessibilityFocus(): void;
+
+        clearAccessibilityFocus(): void;
+
+        focus(): void;
+
+        clearFocus(): void;
+
+        copy(): void;
+
+        paste(): void;
+
+        select(): void;
+
+        cut(): void;
+
+        collapse(): void;
+
+        expand(): void;
+
+        dismiss(): void;
+
+        showOnScreen(): void;
+
+        scrollForward(): void;
+
+        scrollBackward(): void;
+
+        scrollUp(): void;
+
+        scrollDown(): void;
+
+        scrollLeft(): void;
+
+        scrollRight(): void;
+
+        contextClick(): void;
+
+        setSelection(start: number, end: number): void;
+
+        setText(text: string): void;
+
+        setProgress(value: number): void;
+
+        scrollTo(row: number, column: number): void;
     }
 
-    class QuickUi {
-        static builder(): QuickUiBuilder;
-
-        static builder(id: string): QuickUiBuilder;
-
-        id: string;
+    /** Ui 选择器类 */
+    class UiSelector {
+        static builder(): UiSelectorBuilder;
 
         private constructor();
 
-        show(): Promise<QuickUi>;
+        find(): UiObject[];
 
-        getResult(): QuickUiResult;
+        findOne(): UiObject | null;
 
-        waitForResult(): Promise<QuickUiResult>;
+        untilFind(timeout?: number): Promise<UiObject[]>;
+
+        untilFindOne(timeout?: number): Promise<UiObject>;
+
+        exists(): boolean;
+
+        wait(timeout?: number): Promise<void>;
+    }
+
+    class UiSelectorBuilder {
+        private constructor();
+
+        id(id: string): UiSelectorBuilder;
+
+        idEquals(id: string): UiSelectorBuilder;
+
+        idContains(content: string): UiSelectorBuilder;
+
+        idMatches(regex: string): UiSelectorBuilder;
+
+        idStartsWith(prefix: string): UiSelectorBuilder;
+
+        idEndsWith(suffix: string): UiSelectorBuilder;
+
+        text(text: string): UiSelectorBuilder;
+
+        textEquals(text: string): UiSelectorBuilder;
+
+        textContains(content: string): UiSelectorBuilder;
+
+        textMatches(regex: string): UiSelectorBuilder;
+
+        textStartsWith(prefix: string): UiSelectorBuilder;
+
+        textEndsWith(suffix: string): UiSelectorBuilder;
+
+        desc(desc: string): UiSelectorBuilder;
+
+        descEquals(desc: string): UiSelectorBuilder;
+
+        descContains(content: string): UiSelectorBuilder;
+
+        descMatches(regex: string): UiSelectorBuilder;
+
+        descStartsWith(prefix: string): UiSelectorBuilder;
+
+        descEndsWith(suffix: string): UiSelectorBuilder;
+
+        className(className: string): UiSelectorBuilder;
+
+        classNameEquals(className: string): UiSelectorBuilder;
+
+        classNameContains(content: string): UiSelectorBuilder;
+
+        classNameMatches(regex: string): UiSelectorBuilder;
+
+        classNameStartsWith(prefix: string): UiSelectorBuilder;
+
+        classNameEndsWith(suffix: string): UiSelectorBuilder;
+
+        packageName(packageName: string): UiSelectorBuilder;
+
+        packageNameEquals(packageName: string): UiSelectorBuilder;
+
+        packageNameContains(content: string): UiSelectorBuilder;
+
+        packageNameMatches(regex: string): UiSelectorBuilder;
+
+        packageNameStartsWith(prefix: string): UiSelectorBuilder;
+
+        packageNameEndsWith(suffix: string): UiSelectorBuilder;
+
+        bounds(rect: Rect): UiSelectorBuilder;
+
+        boundsEquals(rect: Rect): UiSelectorBuilder;
+
+        boundsInside(rect: Rect): UiSelectorBuilder;
+
+        boundsContains(rect: Rect): UiSelectorBuilder;
+
+        checkable(value?: boolean): UiSelectorBuilder;
+
+        checked(value?: boolean): UiSelectorBuilder;
+
+        focusable(value?: boolean): UiSelectorBuilder;
+
+        focused(value?: boolean): UiSelectorBuilder;
+
+        visibleToUser(value?: boolean): UiSelectorBuilder;
+
+        accessibilityFocused(value?: boolean): UiSelectorBuilder;
+
+        selected(value?: boolean): UiSelectorBuilder;
+
+        clickable(value?: boolean): UiSelectorBuilder;
+
+        longClickable(value?: boolean): UiSelectorBuilder;
+
+        enabled(value?: boolean): UiSelectorBuilder;
+
+        password(value?: boolean): UiSelectorBuilder;
+
+        scrollable(value?: boolean): UiSelectorBuilder;
+
+        editable(value?: boolean): UiSelectorBuilder;
+
+        contentInvalid(value?: boolean): UiSelectorBuilder;
+
+        contextClickable(value?: boolean): UiSelectorBuilder;
+
+        multiLine(value?: boolean): UiSelectorBuilder;
+
+        dismissable(value?: boolean): UiSelectorBuilder;
+
+        depth(value: number): UiSelectorBuilder;
+
+        row(value: number): UiSelectorBuilder;
+
+        rowCount(value: number): UiSelectorBuilder;
+
+        rowSpan(value: number): UiSelectorBuilder;
+
+        column(value: number): UiSelectorBuilder;
+
+        columnCount(value: number): UiSelectorBuilder;
+
+        columnSpan(value: number): UiSelectorBuilder;
+
+        indexInParent(value: number): UiSelectorBuilder;
+
+        drawingOrder(value: number): UiSelectorBuilder;
+
+        bfs(): UiSelectorBuilder;
+
+        dfs(): UiSelectorBuilder;
+
+        build(): UiSelector;
+    }
+
+    class Image {
+        private constructor();
+
+        recycle(): void;
+
+        getWidth(): Promise<number>;
+
+        getHeight(): Promise<number>;
+
+        getColor(x: number, y: number): Promise<number>;
+    }
+
+    interface CompareColorOptionsConstructorOptions {
+        readonly threshold?: number;
+    }
+
+    class CompareColorOptions {
+        static readonly defaultOptions: {
+            readonly threshold: number;
+        };
+
+        readonly threshold: number;
+
+        constructor(options?: CompareColorOptionsConstructorOptions);
+    }
+
+    interface FindColorOptionsConstructorOptions {
+        readonly threshold?: number;
+
+        readonly region?: Rect | RectData;
+    }
+
+    class FindColorOptions {
+        static readonly defaultOptions: {
+            readonly threshold: number;
+
+            readonly region: Rect;
+        };
+
+        readonly threshold: number;
+
+        readonly region: Rect;
+
+        constructor(options?: FindColorOptionsConstructorOptions);
     }
 }
