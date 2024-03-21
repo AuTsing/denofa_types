@@ -90,9 +90,9 @@ declare namespace Android {
 
         function getRunningApps(): string[];
 
-        function getDenortVersion(): string;
+        function getDenofaVersion(): string;
 
-        function getDenortCoreVersion(): string;
+        function getDenofaCoreVersion(): string;
     }
 
     namespace device {
