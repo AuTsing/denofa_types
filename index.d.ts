@@ -56,7 +56,12 @@ declare namespace Android {
         function notification(notification: Notification): void;
         function notification(message: string): void;
         function notification(options: NotificationConstructorOptions): void;
-        function notification(message: string | null, title: string | null, smallIcon: string | null, largeIcon: string | null): void;
+        function notification(
+            message: string | null,
+            title: string | null,
+            smallIcon: string | null,
+            largeIcon: string | null,
+        ): void;
 
         function inputTextRoot(text: string): Promise<void>;
 
@@ -233,6 +238,20 @@ declare namespace Android {
         function getBluetoothAddress(): string;
     }
 
+    namespace shell {
+        function execSh(cmd: string): Promise<ShellResult>;
+
+        function execShSync(cmd: string): ShellResult;
+
+        function execSu(cmd: string): Promise<ShellResult>;
+
+        function execSuSync(cmd: string): ShellResult;
+
+        function execLibsu(cmd: string): Promise<ShellResult>;
+
+        function execLibsuSync(cmd: string): ShellResult;
+    }
+
     namespace sys {
         function delay(duration: number): Promise<void>;
 
@@ -260,60 +279,132 @@ declare namespace Android {
         function compareColor(point: PointConstructorOptions): Promise<boolean>;
         function compareColor(xyc: PointData, options: CompareColorOptions): Promise<boolean>;
         function compareColor(point: Point, options: CompareColorOptions): Promise<boolean>;
-        function compareColor(point: PointConstructorOptions, options: CompareColorOptions): Promise<boolean>;
-        function compareColor(xyc: PointData, options: CompareColorOptionsConstructorOptions): Promise<boolean>;
-        function compareColor(point: Point, options: CompareColorOptionsConstructorOptions): Promise<boolean>;
-        function compareColor(point: PointConstructorOptions, options: CompareColorOptionsConstructorOptions): Promise<boolean>;
+        function compareColor(
+            point: PointConstructorOptions,
+            options: CompareColorOptions,
+        ): Promise<boolean>;
+        function compareColor(
+            xyc: PointData,
+            options: CompareColorOptionsConstructorOptions,
+        ): Promise<boolean>;
+        function compareColor(
+            point: Point,
+            options: CompareColorOptionsConstructorOptions,
+        ): Promise<boolean>;
+        function compareColor(
+            point: PointConstructorOptions,
+            options: CompareColorOptionsConstructorOptions,
+        ): Promise<boolean>;
 
         function compareColors(xycs: PointData[]): Promise<boolean>;
         function compareColors(points: Point[]): Promise<boolean>;
         function compareColors(points: PointConstructorOptions[]): Promise<boolean>;
         function compareColors(xycs: PointData[], options: CompareColorOptions): Promise<boolean>;
         function compareColors(points: Point[], options: CompareColorOptions): Promise<boolean>;
-        function compareColors(points: PointConstructorOptions[], options: CompareColorOptions): Promise<boolean>;
-        function compareColors(xycs: PointData[], options: CompareColorOptionsConstructorOptions): Promise<boolean>;
-        function compareColors(points: Point[], options: CompareColorOptionsConstructorOptions): Promise<boolean>;
-        function compareColors(points: PointConstructorOptions[], options: CompareColorOptionsConstructorOptions): Promise<boolean>;
+        function compareColors(
+            points: PointConstructorOptions[],
+            options: CompareColorOptions,
+        ): Promise<boolean>;
+        function compareColors(
+            xycs: PointData[],
+            options: CompareColorOptionsConstructorOptions,
+        ): Promise<boolean>;
+        function compareColors(
+            points: Point[],
+            options: CompareColorOptionsConstructorOptions,
+        ): Promise<boolean>;
+        function compareColors(
+            points: PointConstructorOptions[],
+            options: CompareColorOptionsConstructorOptions,
+        ): Promise<boolean>;
 
         function findColor(xyc: PointData): Promise<Point>;
         function findColor(point: Point): Promise<Point>;
         function findColor(point: PointConstructorOptions): Promise<Point>;
         function findColor(xyc: PointData, options: FindColorOptions): Promise<Point>;
         function findColor(point: Point, options: FindColorOptions): Promise<Point>;
-        function findColor(point: PointConstructorOptions, options: FindColorOptions): Promise<Point>;
-        function findColor(xyc: PointData, options: FindColorOptionsConstructorOptions): Promise<Point>;
-        function findColor(point: Point, options: FindColorOptionsConstructorOptions): Promise<Point>;
-        function findColor(point: PointConstructorOptions, options: FindColorOptionsConstructorOptions): Promise<Point>;
+        function findColor(
+            point: PointConstructorOptions,
+            options: FindColorOptions,
+        ): Promise<Point>;
+        function findColor(
+            xyc: PointData,
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point>;
+        function findColor(
+            point: Point,
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point>;
+        function findColor(
+            point: PointConstructorOptions,
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point>;
 
         function findColors(xyc: PointData): Promise<Point[]>;
         function findColors(point: Point): Promise<Point[]>;
         function findColors(point: PointConstructorOptions): Promise<Point[]>;
         function findColors(xyc: PointData, options: FindColorOptions): Promise<Point[]>;
         function findColors(point: Point, options: FindColorOptions): Promise<Point[]>;
-        function findColors(point: PointConstructorOptions, options: FindColorOptions): Promise<Point[]>;
-        function findColors(xyc: PointData, options: FindColorOptionsConstructorOptions): Promise<Point[]>;
-        function findColors(point: Point, options: FindColorOptionsConstructorOptions): Promise<Point[]>;
-        function findColors(point: PointConstructorOptions, options: FindColorOptionsConstructorOptions): Promise<Point[]>;
+        function findColors(
+            point: PointConstructorOptions,
+            options: FindColorOptions,
+        ): Promise<Point[]>;
+        function findColors(
+            xyc: PointData,
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point[]>;
+        function findColors(
+            point: Point,
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point[]>;
+        function findColors(
+            point: PointConstructorOptions,
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point[]>;
 
         function findMultiColor(xycs: PointData[]): Promise<Point>;
         function findMultiColor(points: Point[]): Promise<Point>;
         function findMultiColor(points: PointConstructorOptions[]): Promise<Point>;
         function findMultiColor(xycs: PointData[], options: FindColorOptions): Promise<Point>;
         function findMultiColor(points: Point[], options: FindColorOptions): Promise<Point>;
-        function findMultiColor(points: PointConstructorOptions[], options: FindColorOptions): Promise<Point>;
-        function findMultiColor(xycs: PointData[], options: FindColorOptionsConstructorOptions): Promise<Point>;
-        function findMultiColor(points: Point[], options: FindColorOptionsConstructorOptions): Promise<Point>;
-        function findMultiColor(points: PointConstructorOptions[], options: FindColorOptionsConstructorOptions): Promise<Point>;
+        function findMultiColor(
+            points: PointConstructorOptions[],
+            options: FindColorOptions,
+        ): Promise<Point>;
+        function findMultiColor(
+            xycs: PointData[],
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point>;
+        function findMultiColor(
+            points: Point[],
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point>;
+        function findMultiColor(
+            points: PointConstructorOptions[],
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point>;
 
         function findMultiColors(xycs: PointData[]): Promise<Point[]>;
         function findMultiColors(points: Point[]): Promise<Point[]>;
         function findMultiColors(points: PointConstructorOptions[]): Promise<Point[]>;
         function findMultiColors(xycs: PointData[], options: FindColorOptions): Promise<Point[]>;
         function findMultiColors(points: Point[], options: FindColorOptions): Promise<Point[]>;
-        function findMultiColors(points: PointConstructorOptions[], options: FindColorOptions): Promise<Point[]>;
-        function findMultiColors(xycs: PointData[], options: FindColorOptionsConstructorOptions): Promise<Point[]>;
-        function findMultiColors(points: Point[], options: FindColorOptionsConstructorOptions): Promise<Point[]>;
-        function findMultiColors(points: PointConstructorOptions[], options: FindColorOptionsConstructorOptions): Promise<Point[]>;
+        function findMultiColors(
+            points: PointConstructorOptions[],
+            options: FindColorOptions,
+        ): Promise<Point[]>;
+        function findMultiColors(
+            xycs: PointData[],
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point[]>;
+        function findMultiColors(
+            points: Point[],
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point[]>;
+        function findMultiColors(
+            points: PointConstructorOptions[],
+            options: FindColorOptionsConstructorOptions,
+        ): Promise<Point[]>;
     }
 
     namespace finger {
@@ -340,18 +431,62 @@ declare namespace Android {
         function tapAccessibility(x: number, y: number): Promise<void>;
 
         function swipeAccessibility(pointFrom: Point, pointTo: Point): Promise<void>;
-        function swipeAccessibility(pointFrom: Point, pointTo: Point, duration: number): Promise<void>;
-        function swipeAccessibility(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions): Promise<void>;
-        function swipeAccessibility(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration: number): Promise<void>;
-        function swipeAccessibility(xFrom: number, yFrom: number, xTo: number, yTo: number): Promise<void>;
-        function swipeAccessibility(xFrom: number, yFrom: number, xTo: number, yTo: number, duration: number): Promise<void>;
+        function swipeAccessibility(
+            pointFrom: Point,
+            pointTo: Point,
+            duration: number,
+        ): Promise<void>;
+        function swipeAccessibility(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+        ): Promise<void>;
+        function swipeAccessibility(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+            duration: number,
+        ): Promise<void>;
+        function swipeAccessibility(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+        ): Promise<void>;
+        function swipeAccessibility(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+            duration: number,
+        ): Promise<void>;
 
         function dragAndDropAccessibility(pointFrom: Point, pointTo: Point): Promise<void>;
-        function dragAndDropAccessibility(pointFrom: Point, pointTo: Point, duration: number): Promise<void>;
-        function dragAndDropAccessibility(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions): Promise<void>;
-        function dragAndDropAccessibility(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration: number): Promise<void>;
-        function dragAndDropAccessibility(xFrom: number, yFrom: number, xTo: number, yTo: number): Promise<void>;
-        function dragAndDropAccessibility(xFrom: number, yFrom: number, xTo: number, yTo: number, duration: number): Promise<void>;
+        function dragAndDropAccessibility(
+            pointFrom: Point,
+            pointTo: Point,
+            duration: number,
+        ): Promise<void>;
+        function dragAndDropAccessibility(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+        ): Promise<void>;
+        function dragAndDropAccessibility(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+            duration: number,
+        ): Promise<void>;
+        function dragAndDropAccessibility(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+        ): Promise<void>;
+        function dragAndDropAccessibility(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+            duration: number,
+        ): Promise<void>;
 
         function tapRoot(point: Point): Promise<void>;
         function tapRoot(point: PointConstructorOptions): Promise<void>;
@@ -359,17 +494,48 @@ declare namespace Android {
 
         function swipeRoot(pointFrom: Point, pointTo: Point): Promise<void>;
         function swipeRoot(pointFrom: Point, pointTo: Point, duration: number): Promise<void>;
-        function swipeRoot(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions): Promise<void>;
-        function swipeRoot(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration: number): Promise<void>;
+        function swipeRoot(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+        ): Promise<void>;
+        function swipeRoot(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+            duration: number,
+        ): Promise<void>;
         function swipeRoot(xFrom: number, yFrom: number, xTo: number, yTo: number): Promise<void>;
-        function swipeRoot(xFrom: number, yFrom: number, xTo: number, yTo: number, duration: number): Promise<void>;
+        function swipeRoot(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+            duration: number,
+        ): Promise<void>;
 
         function dragAndDropRoot(pointFrom: Point, pointTo: Point): Promise<void>;
         function dragAndDropRoot(pointFrom: Point, pointTo: Point, duration: number): Promise<void>;
-        function dragAndDropRoot(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions): Promise<void>;
-        function dragAndDropRoot(pointFrom: PointConstructorOptions, pointTo: PointConstructorOptions, duration: number): Promise<void>;
-        function dragAndDropRoot(xFrom: number, yFrom: number, xTo: number, yTo: number): Promise<void>;
-        function dragAndDropRoot(xFrom: number, yFrom: number, xTo: number, yTo: number, duration: number): Promise<void>;
+        function dragAndDropRoot(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+        ): Promise<void>;
+        function dragAndDropRoot(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+            duration: number,
+        ): Promise<void>;
+        function dragAndDropRoot(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+        ): Promise<void>;
+        function dragAndDropRoot(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+            duration: number,
+        ): Promise<void>;
 
         function downRoot(point: Point): Promise<void>;
         function downRoot(point: PointConstructorOptions): Promise<void>;
@@ -472,7 +638,12 @@ declare namespace Android {
         constructor();
         constructor(ltrb: RectData);
         constructor(options: RectConstructorOptions);
-        constructor(left: number | null, top: number | null, right: number | null, bottom: number | null);
+        constructor(
+            left: number | null,
+            top: number | null,
+            right: number | null,
+            bottom: number | null,
+        );
     }
 
     interface NotificationConstructorOptions {
@@ -496,33 +667,19 @@ declare namespace Android {
 
         constructor();
         constructor(options: NotificationConstructorOptions);
-        constructor(message: string | null, title: string | null, smallIcon: string | null, largeIcon: string | null);
+        constructor(
+            message: string | null,
+            title: string | null,
+            smallIcon: string | null,
+            largeIcon: string | null,
+        );
     }
 
-    interface ShellerResult {
+    interface ShellResult {
         readonly code: number;
         readonly out: string[];
         readonly err: string[];
         readonly isSuccess: boolean;
-    }
-
-    enum ShellerCategory {
-        Sh = 0,
-        Su = 1,
-        LibSu = 2,
-    }
-
-    class Sheller {
-        static readonly defaultOptions: {
-            readonly category: ShellerCategory;
-        };
-
-        readonly category: ShellerCategory;
-
-        constructor();
-        constructor(category: ShellerCategory);
-
-        exec(cmd: string): Promise<ShellerResult>;
     }
 
     class Floater {
@@ -595,7 +752,13 @@ declare namespace Android {
         addSelect(id: string): QuickUiBuilder;
         addSelect(id: string, options: QuickUiSelectOptions): QuickUiBuilder;
         addSelect(id: string, options: QuickUiSelectOptionsConstructorOptions): QuickUiBuilder;
-        addSelect(id: string, label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string | null): QuickUiBuilder;
+        addSelect(
+            id: string,
+            label: string | null,
+            options: string[] | null,
+            displayOptions: string[] | null,
+            defaultValue: string | null,
+        ): QuickUiBuilder;
 
         addSwitch(id: string): QuickUiBuilder;
         addSwitch(id: string, options: QuickUiSwitchOptions): QuickUiBuilder;
@@ -605,7 +768,13 @@ declare namespace Android {
         addCheckbox(id: string): QuickUiBuilder;
         addCheckbox(id: string, options: QuickUiCheckboxOptions): QuickUiBuilder;
         addCheckbox(id: string, options: QuickUiCheckboxOptionsConstructorOptions): QuickUiBuilder;
-        addCheckbox(id: string, label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string[] | null): QuickUiBuilder;
+        addCheckbox(
+            id: string,
+            label: string | null,
+            options: string[] | null,
+            displayOptions: string[] | null,
+            defaultValue: string[] | null,
+        ): QuickUiBuilder;
 
         addInput(id: string): QuickUiBuilder;
         addInput(id: string, options: QuickUiInputOptions): QuickUiBuilder;
@@ -615,7 +784,12 @@ declare namespace Android {
         addText(id: string): QuickUiBuilder;
         addText(id: string, options: QuickUiTextOptions): QuickUiBuilder;
         addText(id: string, options: QuickUiTextOptionsConstructorOptions): QuickUiBuilder;
-        addText(id: string, value: string | null, fontSize: number | null, color: number | null): QuickUiBuilder;
+        addText(
+            id: string,
+            value: string | null,
+            fontSize: number | null,
+            color: number | null,
+        ): QuickUiBuilder;
 
         build(): QuickUi;
     }
@@ -661,7 +835,12 @@ declare namespace Android {
 
         constructor();
         constructor(options: QuickUiSelectOptionsConstructorOptions);
-        constructor(label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string | null);
+        constructor(
+            label: string | null,
+            options: string[] | null,
+            displayOptions: string[] | null,
+            defaultValue: string | null,
+        );
     }
 
     interface QuickUiSwitchOptionsConstructorOptions {
@@ -717,7 +896,12 @@ declare namespace Android {
 
         constructor();
         constructor(options: QuickUiCheckboxOptionsConstructorOptions);
-        constructor(label: string | null, options: string[] | null, displayOptions: string[] | null, defaultValue: string[] | null);
+        constructor(
+            label: string | null,
+            options: string[] | null,
+            displayOptions: string[] | null,
+            defaultValue: string[] | null,
+        );
     }
 
     interface QuickUiInputOptionsConstructorOptions {
