@@ -675,11 +675,37 @@ declare namespace Android {
         );
     }
 
-    interface ShellResult {
+    interface ShellResultConstructorOptions {
+        readonly code?: number;
+
+        readonly out?: string[];
+
+        readonly err?: string[];
+
+        readonly isSuccess?: boolean;
+    }
+
+    class ShellResult {
+        static readonly defaultOptions: {
+            readonly code: number;
+
+            readonly out: string[];
+
+            readonly err: string[];
+
+            readonly isSuccess: boolean;
+        };
+
         readonly code: number;
+
         readonly out: string[];
+
         readonly err: string[];
+
         readonly isSuccess: boolean;
+
+        constructor();
+        constructor(options: ShellResultConstructorOptions);
     }
 
     class Floater {
