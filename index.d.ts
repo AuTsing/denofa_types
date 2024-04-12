@@ -250,6 +250,10 @@ declare namespace Android {
         function execLibsu(cmd: string): Promise<ShellResult>;
 
         function execLibsuSync(cmd: string): ShellResult;
+
+        function execShizuku(cmd: string): Promise<ShellResult>;
+
+        function execShizukuSync(cmd: string): ShellResult;
     }
 
     namespace sys {
@@ -488,9 +492,42 @@ declare namespace Android {
             duration: number,
         ): Promise<void>;
 
+        function tapPrivilege(point: Point): Promise<void>;
+        function tapPrivilege(point: PointConstructorOptions): Promise<void>;
+        function tapPrivilege(x: number, y: number): Promise<void>;
+
         function tapRoot(point: Point): Promise<void>;
         function tapRoot(point: PointConstructorOptions): Promise<void>;
         function tapRoot(x: number, y: number): Promise<void>;
+
+        function tapShizuku(point: Point): Promise<void>;
+        function tapShizuku(point: PointConstructorOptions): Promise<void>;
+        function tapShizuku(x: number, y: number): Promise<void>;
+
+        function swipePrivilege(pointFrom: Point, pointTo: Point): Promise<void>;
+        function swipePrivilege(pointFrom: Point, pointTo: Point, duration: number): Promise<void>;
+        function swipePrivilege(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+        ): Promise<void>;
+        function swipePrivilege(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+            duration: number,
+        ): Promise<void>;
+        function swipePrivilege(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+        ): Promise<void>;
+        function swipePrivilege(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+            duration: number,
+        ): Promise<void>;
 
         function swipeRoot(pointFrom: Point, pointTo: Point): Promise<void>;
         function swipeRoot(pointFrom: Point, pointTo: Point, duration: number): Promise<void>;
@@ -505,6 +542,60 @@ declare namespace Android {
         ): Promise<void>;
         function swipeRoot(xFrom: number, yFrom: number, xTo: number, yTo: number): Promise<void>;
         function swipeRoot(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+            duration: number,
+        ): Promise<void>;
+
+        function swipeShizuku(pointFrom: Point, pointTo: Point): Promise<void>;
+        function swipeShizuku(pointFrom: Point, pointTo: Point, duration: number): Promise<void>;
+        function swipeShizuku(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+        ): Promise<void>;
+        function swipeShizuku(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+            duration: number,
+        ): Promise<void>;
+        function swipeShizuku(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+        ): Promise<void>;
+        function swipeShizuku(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+            duration: number,
+        ): Promise<void>;
+
+        function dragAndDropPrivilege(pointFrom: Point, pointTo: Point): Promise<void>;
+        function dragAndDropPrivilege(
+            pointFrom: Point,
+            pointTo: Point,
+            duration: number,
+        ): Promise<void>;
+        function dragAndDropPrivilege(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+        ): Promise<void>;
+        function dragAndDropPrivilege(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+            duration: number,
+        ): Promise<void>;
+        function dragAndDropPrivilege(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+        ): Promise<void>;
+        function dragAndDropPrivilege(
             xFrom: number,
             yFrom: number,
             xTo: number,
@@ -537,17 +628,77 @@ declare namespace Android {
             duration: number,
         ): Promise<void>;
 
+        function dragAndDropShizuku(pointFrom: Point, pointTo: Point): Promise<void>;
+        function dragAndDropShizuku(
+            pointFrom: Point,
+            pointTo: Point,
+            duration: number,
+        ): Promise<void>;
+        function dragAndDropShizuku(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+        ): Promise<void>;
+        function dragAndDropShizuku(
+            pointFrom: PointConstructorOptions,
+            pointTo: PointConstructorOptions,
+            duration: number,
+        ): Promise<void>;
+        function dragAndDropShizuku(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+        ): Promise<void>;
+        function dragAndDropShizuku(
+            xFrom: number,
+            yFrom: number,
+            xTo: number,
+            yTo: number,
+            duration: number,
+        ): Promise<void>;
+
+        function downPrivilege(point: Point): Promise<void>;
+        function downPrivilege(point: PointConstructorOptions): Promise<void>;
+        function downPrivilege(x: number, y: number): Promise<void>;
+
         function downRoot(point: Point): Promise<void>;
         function downRoot(point: PointConstructorOptions): Promise<void>;
         function downRoot(x: number, y: number): Promise<void>;
+
+        function downShizuku(point: Point): Promise<void>;
+        function downShizuku(point: PointConstructorOptions): Promise<void>;
+        function downShizuku(x: number, y: number): Promise<void>;
+
+        function movePrivilege(point: Point): Promise<void>;
+        function movePrivilege(point: PointConstructorOptions): Promise<void>;
+        function movePrivilege(x: number, y: number): Promise<void>;
 
         function moveRoot(point: Point): Promise<void>;
         function moveRoot(point: PointConstructorOptions): Promise<void>;
         function moveRoot(x: number, y: number): Promise<void>;
 
+        function moveShizuku(point: Point): Promise<void>;
+        function moveShizuku(point: PointConstructorOptions): Promise<void>;
+        function moveShizuku(x: number, y: number): Promise<void>;
+
+        function upPrivilege(point: Point): Promise<void>;
+        function upPrivilege(point: PointConstructorOptions): Promise<void>;
+        function upPrivilege(x: number, y: number): Promise<void>;
+
         function upRoot(point: Point): Promise<void>;
         function upRoot(point: PointConstructorOptions): Promise<void>;
         function upRoot(x: number, y: number): Promise<void>;
+
+        function upShizuku(point: Point): Promise<void>;
+        function upShizuku(point: PointConstructorOptions): Promise<void>;
+        function upShizuku(x: number, y: number): Promise<void>;
+
+        function multiDownPrivilege(point: Point): Promise<void>;
+        function multiDownPrivilege(point: Point, id: number): Promise<void>;
+        function multiDownPrivilege(point: PointConstructorOptions): Promise<void>;
+        function multiDownPrivilege(point: PointConstructorOptions, id: number): Promise<void>;
+        function multiDownPrivilege(x: number, y: number): Promise<void>;
+        function multiDownPrivilege(x: number, y: number, id: number): Promise<void>;
 
         function multiDownRoot(point: Point): Promise<void>;
         function multiDownRoot(point: Point, id: number): Promise<void>;
@@ -556,6 +707,20 @@ declare namespace Android {
         function multiDownRoot(x: number, y: number): Promise<void>;
         function multiDownRoot(x: number, y: number, id: number): Promise<void>;
 
+        function multiDownShizuku(point: Point): Promise<void>;
+        function multiDownShizuku(point: Point, id: number): Promise<void>;
+        function multiDownShizuku(point: PointConstructorOptions): Promise<void>;
+        function multiDownShizuku(point: PointConstructorOptions, id: number): Promise<void>;
+        function multiDownShizuku(x: number, y: number): Promise<void>;
+        function multiDownShizuku(x: number, y: number, id: number): Promise<void>;
+
+        function multiMovePrivilege(point: Point): Promise<void>;
+        function multiMovePrivilege(point: Point, id: number): Promise<void>;
+        function multiMovePrivilege(point: PointConstructorOptions): Promise<void>;
+        function multiMovePrivilege(point: PointConstructorOptions, id: number): Promise<void>;
+        function multiMovePrivilege(x: number, y: number): Promise<void>;
+        function multiMovePrivilege(x: number, y: number, id: number): Promise<void>;
+
         function multiMoveRoot(point: Point): Promise<void>;
         function multiMoveRoot(point: Point, id: number): Promise<void>;
         function multiMoveRoot(point: PointConstructorOptions): Promise<void>;
@@ -563,8 +728,21 @@ declare namespace Android {
         function multiMoveRoot(x: number, y: number): Promise<void>;
         function multiMoveRoot(x: number, y: number, id: number): Promise<void>;
 
+        function multiMoveShizuku(point: Point): Promise<void>;
+        function multiMoveShizuku(point: Point, id: number): Promise<void>;
+        function multiMoveShizuku(point: PointConstructorOptions): Promise<void>;
+        function multiMoveShizuku(point: PointConstructorOptions, id: number): Promise<void>;
+        function multiMoveShizuku(x: number, y: number): Promise<void>;
+        function multiMoveShizuku(x: number, y: number, id: number): Promise<void>;
+
+        function multiUpPrivilege(): Promise<void>;
+        function multiUpPrivilege(id: number): Promise<void>;
+
         function multiUpRoot(): Promise<void>;
         function multiUpRoot(id: number): Promise<void>;
+
+        function multiUpShizuku(): Promise<void>;
+        function multiUpShizuku(id: number): Promise<void>;
     }
 
     interface PointConstructorOptions {
@@ -713,7 +891,7 @@ declare namespace Android {
 
         static builder(id: string): FloaterBuilder;
 
-        id: string;
+        readonly id: string;
 
         private constructor();
 
@@ -753,7 +931,7 @@ declare namespace Android {
 
         static builder(id: string): QuickUiBuilder;
 
-        id: string;
+        readonly id: string;
 
         private constructor();
 
