@@ -53,19 +53,20 @@ declare namespace Android {
         /** 在屏幕输出 Toast 信息。 */
         function toast(...args: any[]): void;
 
-        function notification(notification: Notification): void;
-        function notification(message: string): void;
-        function notification(options: NotificationConstructorOptions): void;
-        function notification(
-            message: string | null,
-            title: string | null,
-            smallIcon: string | null,
-            largeIcon: string | null,
-        ): void;
+        function notification(title: string, message: string): void;
+        function notification(title: string, message: string, options: NotificationOptions): void;
+
+        function inputTextPrivilege(text: string): Promise<void>;
 
         function inputTextRoot(text: string): Promise<void>;
 
+        function inputTextShizuku(text: string): Promise<void>;
+
+        function inputKeyEventPrivilege(key: string): Promise<void>;
+
         function inputKeyEventRoot(key: string): Promise<void>;
+
+        function inputKeyEventShizuku(key: string): Promise<void>;
     }
 
     namespace app {
@@ -824,33 +825,9 @@ declare namespace Android {
         );
     }
 
-    interface NotificationConstructorOptions {
-        readonly message?: string;
-
-        readonly title?: string | null;
-
-        readonly smallIcon?: string | null;
-
-        readonly largeIcon?: string | null;
-    }
-
-    class Notification {
-        readonly message: string;
-
-        readonly title: string | null;
-
-        readonly smallIcon: string | null;
-
-        readonly largeIcon: string | null;
-
-        constructor();
-        constructor(options: NotificationConstructorOptions);
-        constructor(
-            message: string | null,
-            title: string | null,
-            smallIcon: string | null,
-            largeIcon: string | null,
-        );
+    interface NotificationOptions {
+        smallIcon: string | null;
+        largeIcon: string | null;
     }
 
     interface ShellResultConstructorOptions {
