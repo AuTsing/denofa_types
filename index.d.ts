@@ -99,6 +99,10 @@ declare namespace Android {
         function getDenofaVersion(): string;
 
         function getDenofaCoreVersion(): string;
+
+        function getInternalStoragePath(): string;
+
+        function getExternalStoragePath(): string;
     }
 
     namespace device {
