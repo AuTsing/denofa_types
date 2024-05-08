@@ -272,12 +272,26 @@ declare namespace Android {
 
         function stop(): void;
         function stop(projectName: string): void;
+
+        function stopAll(): void;
+
+        function load(): Promise<void>;
+
+        function list(): string[];
+
+        function listRunning(): string[];
+
+        function create(repository: string): Promise<void>;
+
+        function destroy(projectName: string): Promise<void>;
+
+        function gitPull(repository: string): Promise<void>;
     }
 
     namespace img {
-        function refresh(): Promise<void>;
+        function getImage(): Promise<Image>;
 
-        function getImage(): Image;
+        function refresh(): Promise<void>;
 
         function lock(): void;
 
@@ -414,6 +428,9 @@ declare namespace Android {
             points: PointConstructorOptions[],
             options: FindColorOptionsConstructorOptions,
         ): Promise<Point[]>;
+
+        function saveImage(): Promise<string>;
+        function saveImage(filename: string): Promise<string>;
     }
 
     namespace finger {
@@ -1444,11 +1461,15 @@ declare namespace Android {
 
         recycle(): void;
 
-        getWidth(): Promise<number>;
+        getWidth(): number;
 
-        getHeight(): Promise<number>;
+        getHeight(): number;
 
-        getColor(x: number, y: number): Promise<number>;
+        getColor(x: number, y: number): number;
+
+        save(): Promise<void>;
+
+        saveAs(filename: string): Promise<void>;
     }
 
     interface CompareColorOptionsConstructorOptions {
