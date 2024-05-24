@@ -268,12 +268,12 @@ declare namespace Android {
     }
 
     namespace project {
-        function run(projectName: string): void;
+        function run(projectName: string): Promise<void>;
 
-        function stop(): void;
-        function stop(projectName: string): void;
+        function stop(): Promise<void>;
+        function stop(projectName: string): Promise<void>;
 
-        function stopAll(): void;
+        function stopAll(): Promise<void>;
 
         function load(): Promise<void>;
 
