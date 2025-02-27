@@ -241,6 +241,14 @@ declare namespace Android {
         function getMacAddress(): string;
 
         function getBluetoothAddress(): string;
+
+        function getIsKeyguardSecure(): boolean;
+
+        function getIsKeyguardLocked(): boolean;
+
+        function getIsDeviceSecure(): boolean;
+
+        function getIsDeviceLocked(): boolean;
     }
 
     namespace shell {
