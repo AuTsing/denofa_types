@@ -294,6 +294,8 @@ declare namespace Android {
         function destroy(projectName: string): Promise<void>;
 
         function gitPull(repository: string): Promise<void>;
+
+        function getSelfInfo(): ProjectInfo;
     }
 
     namespace img {
@@ -1400,5 +1402,25 @@ declare namespace Android {
 
         constructor();
         constructor(options: SaveImageOptionsConstructorOptions);
+    }
+
+    type ProjectCategory = 'Normal' | 'ConfigFile' | 'Others';
+
+    interface ProjectInfo {
+        readonly name: string;
+        readonly path: string;
+        readonly category: ProjectCategory;
+        readonly entryPoint: string;
+        readonly workingDir: string;
+        readonly configFilePath: string;
+        readonly shortcut: boolean;
+        readonly permissions: string[];
+        readonly args: string[];
+        readonly repository: string;
+        readonly updatedAt: number;
+        readonly cachedAt: number;
+        readonly tasks: string[];
+        readonly id: number;
+        readonly planAt: number;
     }
 }
