@@ -812,6 +812,8 @@ declare namespace Android {
 
         getResult(): QuickUiResult;
 
+        getLastResult(): Promise<QuickUiResult>;
+
         waitForResult(): Promise<QuickUiResult>;
     }
 
