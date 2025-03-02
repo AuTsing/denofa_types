@@ -295,7 +295,8 @@ declare namespace Android {
 
         function gitPull(repository: string): Promise<void>;
 
-        function getSelfInfo(): ProjectInfo;
+        function getInfo(): ProjectInfo;
+        function getInfo(projectName: string): ProjectInfo;
     }
 
     namespace img {
@@ -1420,6 +1421,7 @@ declare namespace Android {
         readonly updatedAt: number;
         readonly cachedAt: number;
         readonly tasks: string[];
+        readonly running: boolean;
         readonly id: number;
         readonly planAt: number;
     }

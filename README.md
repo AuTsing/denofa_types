@@ -1,1 +1,1 @@
-Denofa core version: `v0.13.4`
+Denofa core version: `v0.13.5`
