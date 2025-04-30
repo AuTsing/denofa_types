@@ -1339,9 +1339,11 @@ declare namespace Android {
 
         getColor(x: number, y: number): number;
 
-        save(): Promise<void>;
+        getData(): Uint8Array;
 
-        saveAs(filename: string): Promise<void>;
+        save(): Promise<string>;
+
+        saveAs(filename: string): Promise<string>;
     }
 
     interface CompareColorOptionsConstructorOptions {
