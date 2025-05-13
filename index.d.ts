@@ -1413,20 +1413,115 @@ declare namespace Android {
 
     interface ProjectInfo {
         readonly name: string;
+
         readonly path: string;
+
         readonly category: ProjectCategory;
+
         readonly entryPoint: string;
+
         readonly workingDir: string;
+
         readonly configFilePath: string;
+
         readonly shortcut: boolean;
+
         readonly permissions: string[];
+
         readonly args: string[];
+
         readonly repository: string;
+
         readonly updatedAt: number;
+
         readonly cachedAt: number;
+
         readonly tasks: string[];
+
         readonly running: boolean;
+
         readonly id: number;
+
         readonly planAt: number;
+    }
+
+    interface DetectResult {
+        readonly classId: number;
+
+        readonly confidence: number;
+
+        readonly box: number[];
+    }
+
+    interface RecognizeResult {
+        readonly classId: number;
+
+        readonly confidence: number;
+    }
+
+    class Model {
+        private constructor();
+
+        recycle(): void;
+
+        setBackend(backendId: Android.ai.backend): void;
+
+        setTarget(targetId: Android.ai.target): void;
+
+        setConfidenceThreshold(threshold: number): void;
+
+        setNmsThreshold(threshold: number): void;
+
+        setRegion(ltrb: RectData): void;
+        setRegion(options: RectConstructorOptions): void;
+        setRegion(left: number | null, top: number | null, right: number | null, bottom: number | null): void;
+
+        detect(): Promise<DetectResult[]>;
+        detect(path: string): Promise<DetectResult[]>;
+
+        recognize(): Promise<RecognizeResult[]>;
+        recognize(path: string): Promise<RecognizeResult[]>;
+    }
+
+    namespace ai {
+        enum backend {
+            DNN_BACKEND_DEFAULT = 1,
+            DNN_BACKEND_HALIDE = 0 + 1,
+            DNN_BACKEND_INFERENCE_ENGINE = 0 + 2,
+            DNN_BACKEND_OPENCV = 0 + 3,
+            DNN_BACKEND_VKCOM = 0 + 4,
+            DNN_BACKEND_CUDA = 0 + 5,
+            DNN_BACKEND_WEBNN = 0 + 6,
+            DNN_BACKEND_TIMVX = 0 + 7,
+            DNN_BACKEND_CANN = 0 + 8,
+        }
+
+        enum target {
+            DNN_TARGET_CPU = 0,
+            DNN_TARGET_OPENCL = 0 + 1,
+            DNN_TARGET_OPENCL_FP16 = 0 + 2,
+            DNN_TARGET_MYRIAD = 0 + 3,
+            DNN_TARGET_VULKAN = 0 + 4,
+            DNN_TARGET_FPGA = 0 + 5,
+            DNN_TARGET_CUDA = 0 + 6,
+            DNN_TARGET_CUDA_FP16 = 0 + 7,
+            DNN_TARGET_HDDL = 0 + 8,
+            DNN_TARGET_NPU = 0 + 9,
+            DNN_TARGET_CPU_FP16 = 0 + 10,
+        }
+
+        function loadModel(path: string): Promise<Model>;
+
+        function loadOnnxModel(path: string): Promise<Model>;
+
+        function loadCaffeModel(prototxtPath: string, modelPath: string): Promise<Model>;
+
+        function loadDarknetModel(cfgPath: string, modelPath: string): Promise<Model>;
+
+        function loadTfliteModel(path: string): Promise<Model>;
+
+        function loadTensorfloModel(modelPath: string, configPath: string): Promise<Model>;
+
+        function loadTorchModel(path: string): Promise<Model>;
     }
 }
